@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1535516096 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_03/PedirEdadConFunciones/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+
