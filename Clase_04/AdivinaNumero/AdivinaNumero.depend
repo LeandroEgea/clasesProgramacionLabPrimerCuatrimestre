@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1535668700 source:/home/alumno/clasesProgramacionLabPrimerCuatrimestre/Clase_04/AdivinaNumero/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+
