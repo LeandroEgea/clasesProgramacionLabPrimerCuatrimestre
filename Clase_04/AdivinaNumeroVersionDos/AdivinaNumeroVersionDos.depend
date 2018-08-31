@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1535673533 source:/home/alumno/clasesProgramacionLabPrimerCuatrimestre/Clase_04/AdivinaNumeroVersionDos/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
+1535673428 /home/alumno/clasesProgramacionLabPrimerCuatrimestre/Clase_04/AdivinaNumeroVersionDos/utn.h
+
