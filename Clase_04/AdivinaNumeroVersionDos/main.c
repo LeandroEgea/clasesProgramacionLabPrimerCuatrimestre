@@ -4,10 +4,10 @@
 
 int main()
 {
-    int numero;
-    if (utn_getEntero(&numero, "Ingrese numero\n", "Fuera de Rango\n", 1, 100, 3) == 0)
+    char caracter;
+    if (utn_getCaracter(&numero, "Ingrese caracter\n", "Fuera de Rango\n", 'a', 'z', 3) == 0)
     {
-        printf("El Numero es: %d\n", numero);
+        printf("El Caracter es: %d\n", caracter);
     }
     return 0;
 }
