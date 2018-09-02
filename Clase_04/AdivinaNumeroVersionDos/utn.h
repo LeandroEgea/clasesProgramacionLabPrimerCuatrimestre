@@ -25,3 +25,17 @@ int utn_getCaracter(char *pCaracterResultante,
 
 int utn_validarCaracterEnIntervalo(char caracterIngresado, char minimo, char maximo);
 
+int utn_getCadena(  char *pCadenaResultante,
+                    char mensaje[],
+                    char mensajeError[],
+                    int longitudMinima,
+                    int longitudMaxima,
+                    int reintentos);
+
+int utn_validarLongitudDeLaCadena(int longitudCadenaIngresada, int longitudMinima, int longitudMaxima);
+
+int utn_copiarCadenaEnOtraCadena(char *pCadenaInicial, char *pCadenaCopiada);
+
+int utn_obtenerLongitudCadena(char *cadenaIngresada);
+
+int utn_validarMail(char *pPosibleMail);

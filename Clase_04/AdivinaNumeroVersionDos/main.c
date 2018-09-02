@@ -4,6 +4,19 @@
 
 int main()
 {
+    char cadena[55];
+    if (utn_getCadena(cadena, "Ingrese frase\n", "Fuera del Rango de Longitud\n", 2, 50, 5) == 0)
+    {
+        if(utn_validarMail(cadena)== 0)
+        {
+        printf("El mail es %s\n", cadena);
+        }
+    }
+    return 0;
+}
+/*
+int main()
+{
     char caracter;
     if (utn_getCaracter(&caracter, "Ingrese caracter\n", "Fuera de Rango\n", 'a', 'z', 3) == 0)
     {
@@ -11,7 +24,7 @@ int main()
     }
     return 0;
 }
-/*
+
 int main()
 {
     float flotante;
