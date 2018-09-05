@@ -486,7 +486,117 @@ void utn_imprimirResultadoLongLongOErrorEnPantalla( int opcionAMostrar,
         printf("%s\n", mensajeError);
     }
 }
-
-
-
-
+/**
+* \brief devuelve el mayor numero dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \return devuelve el mayor numero
+*
+*/
+int utn_retornarMayor(int listado[], int tamanio)
+{
+    int mayor;
+    int i;
+    for(i=0;i<tamanio;i++)
+    {
+        if(i==0 || listado[i]>mayor)
+        {
+            mayor = listado[i];
+        }
+    }
+    return mayor;
+}
+/**
+* \brief devuelve el menor numero dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \return devuelve el menor numero
+*
+*/
+int utn_retornarMenor(int listado[], int tamanio)
+{
+    int menor;
+    int i;
+    for(i=0;i<tamanio;i++)
+    {
+        if(i==0 || listado[i]<menor)
+        {
+            menor = listado[i];
+        }
+    }
+    return menor;
+}
+/**
+* \brief devuelve la cantidad de valores pares dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \return devuelve la cantidad de valores pares
+*
+*/
+int utn_retornarCantidadDePares(int listado[], int tamanio)
+{
+    int i;
+    int cantidadDePares = 0;
+    for(i=0;i<tamanio;i++)
+    {
+        if(listado[i] % 2 == 0)
+        {
+            cantidadDePares++;
+        }
+    }
+    return cantidadDePares;
+}
+/**
+* \brief devuelve la suma de todos los valores dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \return devuelve la suma de todos los valores
+*
+*/
+int utn_retornarTotal(int listado[], int tamanio)
+{
+    int i;
+    int sumaTotal = 0;
+    for(i=0;i<tamanio;i++)
+    {
+        sumaTotal = sumaTotal + listado[i];
+    }
+    return sumaTotal;
+}
+/**
+* \brief devuelve el promedio de la suma de todos los valores dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \return devuelve el promedio de la suma de todos los valores
+*
+*/
+float utn_retornarPromedio(int listado[], int tamanio)
+{
+    int sumaTotal;
+    float promedio;
+    sumaTotal = utn_retornarTotal(listado, tamanio);
+    promedio = (float)sumaTotal/tamanio;
+    return promedio;
+}
+/**
+* \brief devuelve los enteros que estan en un intervalo dentro de un array de enteros
+* \param listado Es el array que vamos a evaluar
+* \param tamanio Es la cantidad de numeros que tiene el array
+* \param minimo Es el minimo del intervalo
+* \param maximo Es el maximo del intervalo
+* \return devuelve los enteros que estan en un intervalo
+*
+*/
+int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int maximo)
+{
+    int i;
+    int cantidadEnteros = 0;
+    for(i=0; i<tamanio; i++)
+    {
+        if(utn_validarEnteroEnIntervalo(listado[i], minimo, maximo)==0)
+        {
+            cantidadEnteros++;
+        }
+    }
+    return cantidadEnteros;
+}

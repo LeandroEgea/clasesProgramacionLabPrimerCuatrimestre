@@ -56,3 +56,15 @@ void utn_imprimirResultadoLongLongOErrorEnPantalla( int opcionAMostrar,
                                                     unsigned long long int resultado,
                                                     char mensajeNoExiteResultado[],
                                                     char mensajeError[]);
+
+int utn_retornarMayor(int listado[], int tamanio);
+
+int utn_retornarMenor(int listado[], int tamanio);
+
+int utn_retornarCantidadDePares(int listado[], int tamanio);
+
+int utn_retornarTotal(int listado[], int tamanio);
+
+float utn_retornarPromedio(int listado[], int tamanio);
+
+int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int maximo);

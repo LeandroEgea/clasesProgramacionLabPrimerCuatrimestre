@@ -7,11 +7,6 @@
 void cargarListado(int listado[], int tamanio);
 void MostrarListado(int listado[], int tamanio);
 void MostrarInformacionDelArray(int listado[], int tamanio);
-int retornarMayor(int listado[], int tamanio);
-int retornarMenor(int listado[], int tamanio);
-int retornarCantidadDePares(int listado[], int tamanio);
-int retornarTotal(int listado[], int tamanio);
-float retornarPromedio(int listado[], int tamanio);
 
 int main()
 {
@@ -47,71 +42,23 @@ void MostrarInformacionDelArray(int listado[], int tamanio)
     int cantidadDePares;
     int acumuladorNotas;
     float promedioNotas;
-    notaMayor = retornarMayor(listado, tamanio);
-    notaMenor = retornarMenor(listado, tamanio);
-    cantidadDePares = retornarCantidadDePares(listado, tamanio);
-    acumuladorNotas = retornarTotal(listado, tamanio);
-    promedioNotas = retornarPromedio(listado, tamanio);
+    int cantidadAprobadosSinFinal;
+    int cantidadAprobadosConFinal;
+    int cantidadDesaprobados;
+    notaMayor = utn_retornarMayor(listado, tamanio);
+    notaMenor = utn_retornarMenor(listado, tamanio);
+    cantidadDePares = utn_retornarCantidadDePares(listado, tamanio);
+    acumuladorNotas = utn_retornarTotal(listado, tamanio);
+    promedioNotas = utn_retornarPromedio(listado, tamanio);
+    cantidadAprobadosSinFinal = utn_cantidadEnterosEnIntervalo(listado, tamanio, 6, 10);
+    cantidadAprobadosConFinal = utn_cantidadEnterosEnIntervalo(listado, tamanio, 4, 5);
+    cantidadDesaprobados = utn_cantidadEnterosEnIntervalo(listado, tamanio, 1, 3);
     printf("\nLa nota mayor es: %d", notaMayor);
     printf("\nLa nota menor es: %d", notaMenor);
     printf("\nLa cantidad de pares es: %d", cantidadDePares);
     printf("\nLa nota total es: %d", acumuladorNotas);
     printf("\nLa nota promedio es: %.2f", promedioNotas);
-}
-int retornarMayor(int listado[], int tamanio)
-{
-    int mayor;
-    int i;
-    for(i=0;i<tamanio;i++)
-    {
-        if(i==0 || listado[i]>mayor)
-        {
-            mayor = listado[i];
-        }
-    }
-    return mayor;
-}
-int retornarMenor(int listado[], int tamanio)
-{
-    int menor;
-    int i;
-    for(i=0;i<tamanio;i++)
-    {
-        if(i==0 || listado[i]<menor)
-        {
-            menor = listado[i];
-        }
-    }
-    return menor;
-}
-int retornarCantidadDePares(int listado[], int tamanio)
-{
-    int i;
-    int cantidadDePares = 0;
-    for(i=0;i<tamanio;i++)
-    {
-        if(listado[i] % 2 == 0)
-        {
-            cantidadDePares++;
-        }
-    }
-    return cantidadDePares;
-}
-int retornarTotal(int listado[], int tamanio)
-{
-    int i;
-    int sumaTotal = 0;
-    for(i=0;i<tamanio;i++)
-    {
-        sumaTotal = sumaTotal + listado[i];
-    }
-    return sumaTotal;
-}
-float retornarPromedio(int listado[], int tamanio)
-{
-    int sumaTotal;
-    float promedio;
-    sumaTotal = retornarTotal(listado, tamanio);
-    promedio = (float)sumaTotal/tamanio;
-    return promedio;
+    printf("\nLa cantidad de aprobados sin final es: %d", cantidadAprobadosSinFinal);
+    printf("\nLa cantidad de aprobados con final es: %d", cantidadAprobadosConFinal);
+    printf("\nLa cantidad de desaprobados es: %d", cantidadDesaprobados);
 }
