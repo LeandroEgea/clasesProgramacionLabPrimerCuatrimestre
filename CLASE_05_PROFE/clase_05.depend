@@ -11,3 +11,23 @@
 	<stdlib.h>
 	"utn.h"
 
+1536277746 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536276772 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/array.h
+
+1536273434 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
+1536273434 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/utn.h
+
+1536277544 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+

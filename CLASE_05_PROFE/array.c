@@ -67,3 +67,88 @@ int array_init(int* pArray, int limite, int valor)
     return retorno;
 }
 
+int array_ordenar(int *pArray, int limite, int orden)
+{
+    int retorno=-1;
+    int i;
+    int j;
+    if(pArray != NULL && limite > 0)
+    {
+        if(orden == 0)
+        {
+            for(j=0;j<limite;j++)
+            {
+                array_minimoDesde(pArray, limite, j, &i);
+                array_swap(&pArray[j], &pArray[i]);
+            }
+        }
+        else if(orden == 1)
+        {
+            for(j=(limite-1);j>=0;j--)
+            {
+                if(j>0)
+                {
+                    array_minimoDesde(pArray, j, 0, &i);
+                    array_swap(&pArray[j], &pArray[i]);
+                }
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+
+int array_ordenar2(int *pArray, int limite, int orden)
+{
+    int retorno=-1;
+    int j;
+    int flagSwap;
+    if(pArray != NULL && limite > 0)
+    {
+        do
+        {
+            flagSwap = 0;
+            for(j=0;j<(limite-1);j++)
+            {
+                if( (orden == 0 && pArray[j] < pArray[j+1]) ||
+                    (orden == 1 && pArray[j] > pArray[j+1]))
+                {
+                    flagSwap = 1;
+                    array_swap(&pArray[j], &pArray[j+1]);
+                }
+            }
+        }while(flagSwap==1);
+        retorno = 0;
+    }
+    return retorno;
+}
+
+int array_minimoDesde(int *pArray, int limite, int desde, int *pMinimo)
+{
+    int retorno=-1;
+    int i;
+    int menor;
+    int auxiliarIndiceMinimo;
+    if(pArray != NULL && limite > 0 && limite >= desde)
+    {
+        for(i=desde;i<limite;i++)
+        {
+            if(i==desde || pArray[i] < menor)
+            {
+                menor = pArray[i];
+                auxiliarIndiceMinimo = i;
+            }
+        }
+        *pMinimo = auxiliarIndiceMinimo;
+        retorno = 0;
+    }
+    return retorno;
+}
+
+void array_swap(int *elementoA, int *elementoB)
+{
+    int auxiliar;
+    auxiliar = *elementoA;
+    *elementoA = *elementoB;
+    *elementoB = auxiliar;
+}

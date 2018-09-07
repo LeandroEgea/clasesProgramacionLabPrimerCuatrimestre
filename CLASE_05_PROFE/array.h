@@ -11,4 +11,12 @@ int array_calcularMaximo(int* pArray, int limite, int* pMaximo);
 
 int array_init(int* pArray, int limite, int valor);
 
+int array_ordenar(int *pArray, int limite, int orden);
+
+int array_ordenar2(int *pArray, int limite, int orden);
+
+int array_minimoDesde(int *pArray, int limite, int desde, int *pMinimo);
+
+void array_swap(int *elementoA, int *elementoB);
+
 #endif // ARRAY_H_INCLUDED
