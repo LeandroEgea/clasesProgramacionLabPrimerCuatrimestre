@@ -6,7 +6,7 @@
 
 1536340975 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/array.h
 
-1536436696 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/main.c
+1536442002 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -14,7 +14,7 @@
 	"array.h"
 	"utnmath.h"
 
-1536436752 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.h
+1536440942 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.h
 
 1536340975 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utnmath.h
 
@@ -24,7 +24,7 @@
 	"utn.h"
 	"utnmath.h"
 
-1536436580 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.c
+1536441918 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>

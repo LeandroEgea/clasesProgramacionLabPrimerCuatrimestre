@@ -3,9 +3,9 @@
 
 void utn_myStrncpy (char *destino, char *origen, int tamanio);
 
-int validarIntString(char *stringEntero);
+int utn_validarIntString(char *stringEntero);
 
-int validarFloatString(char *stringFlotante);
+int utn_validarFloatString(char *stringFlotante);
 
 int utn_getEntero(  int *pResultado,
                     char mensaje[],
@@ -53,6 +53,8 @@ int utn_copiarCadenaEnOtraCadena(char *pCadenaInicial, char *pCadenaCopiada);
 int utn_obtenerLongitudCadena(char *cadenaIngresada);
 
 int utn_validarMail(char *pPosibleMail);
+
+int utn_validarTelefono(char *pPosibleTelefono);
 
 void utn_imprimirResultadoFloatOErrorEnPantalla(int opcionAMostrar,
                                                 char mensajeResultado[],

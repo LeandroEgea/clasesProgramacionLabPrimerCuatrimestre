@@ -14,7 +14,7 @@ static int getInt(int* numeroIngresado)
     myFpurge();
     if(scanf("%s", bufferNumero)==1)
     {
-        if(validarIntString(bufferNumero) == 0)
+        if(utn_validarIntString(bufferNumero) == 0)
         {
             *numeroIngresado = atoi(bufferNumero);
             retorno = 0;
@@ -29,7 +29,7 @@ static int getFloat(float* numeroIngresado)
     myFpurge();
     if(scanf("%s", bufferNumero)==1)
     {
-        if(validarFloatString(bufferNumero) == 0)
+        if(utn_validarFloatString(bufferNumero) == 0)
         {
             *numeroIngresado = atof(bufferNumero);
             retorno = 0;
@@ -58,7 +58,7 @@ void utn_myStrncpy (char *destino, char *origen, int tamanio)
 * \return En caso de exito retorna 0, si no es un entero 1
 *
 */
-int validarIntString(char *stringEntero)
+int utn_validarIntString(char *stringEntero)
 {
     int i;
     int retorno = 1;
@@ -86,7 +86,7 @@ int validarIntString(char *stringEntero)
 * \return En caso de exito retorna 0, si no es un flotante 1
 *
 */
-int validarFloatString(char *stringFlotante)
+int utn_validarFloatString(char *stringFlotante)
 {
     int i;
     int retorno = 1;
@@ -520,6 +520,40 @@ int utn_validarMail(char *pPosibleMail)
             printf("El mail debe contener un @ y luego un .(dominio)");
             retorno = 1;
         }
+    }
+    return retorno;
+}
+/**
+* \brief Verifica si la cadena ingresada es un telefono valido o no
+* \param pPosibleTelefono Es la cadena que vamos a evaluar
+* \return Retorna un 0 si puede ser un telefono y un 1 si no
+*
+*/
+int utn_validarTelefono(char *pPosibleTelefono)
+{
+    int i;
+    int retorno;
+    int tamanioCadena;
+    tamanioCadena = strlen(pPosibleTelefono);
+    if( tamanioCadena == 9 &&
+        pPosibleTelefono[0] == '4'&&
+        pPosibleTelefono[4] == '-')
+    {
+        retorno = 0;
+        for(i=1; i<=8; i++)
+        {
+            if(!(pPosibleTelefono[i] >= '0' && pPosibleTelefono[i] <= '9') && i!=4)
+            {
+                retorno = 1;
+                printf("\n4XXX-XXXX\n");
+                break;
+            }
+        }
+    }
+    else
+    {
+        printf("\n4XXX-XXXX\n");
+        retorno = 1;
     }
     return retorno;
 }

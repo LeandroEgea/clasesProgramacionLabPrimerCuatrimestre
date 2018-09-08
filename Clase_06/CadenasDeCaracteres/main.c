@@ -9,9 +9,10 @@
 
 int main()
 {
-    float numeroUno;
-    float numeroDos;
-    int i;
+    char tel [100];
+    //float numeroUno;
+    //float numeroDos;
+    /*int i;
     for(i=0;i<10;i++)
     {
         //sacar el static a getFloat y ponerla en el.h
@@ -23,6 +24,14 @@ int main()
         {
             printf("\nerror\n");
         }
+    }*/
+    if(scanf("%s",tel)==1 && utn_validarTelefono(tel)==0)
+    {
+            printf("\n----> %s\n", tel);
+    }
+    else
+    {
+        printf("\nerror\n");
     }
     return 0;
 }
