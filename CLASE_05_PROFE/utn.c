@@ -1,5 +1,6 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utn.h"
 static void myFpurge()
 {
@@ -25,6 +26,11 @@ static int getString(char textoIngresado[])
 {
     myFpurge();
     return scanf("%s", textoIngresado);
+}
+void utn_myStrncpy (char *destino, char *origen, int tamanio)
+{
+    strncpy(destino, origen, tamanio);
+    destino[tamanio - 1] = '\0';
 }
 /**
 * \brief Solicita un entero al usuario y lo devuelve a traves de pResultado si es validado

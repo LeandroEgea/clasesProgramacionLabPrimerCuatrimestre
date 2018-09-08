@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1536343660 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536340975 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/array.h
+
+1536436696 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"array.h"
+	"utnmath.h"
+
+1536436752 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.h
+
+1536340975 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utnmath.h
+
+1536340975 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utnmath.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+	"utnmath.h"
+
+1536436580 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_06/CadenasDeCaracteres/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+

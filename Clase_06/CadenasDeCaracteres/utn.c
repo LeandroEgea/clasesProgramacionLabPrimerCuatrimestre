@@ -1,5 +1,6 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utn.h"
 static void myFpurge()
 {
@@ -8,13 +9,33 @@ static void myFpurge()
 }
 static int getInt(int* numeroIngresado)
 {
+    int retorno = 1;
+    char bufferNumero[1000];
     myFpurge();
-    return scanf("%d", numeroIngresado);
+    if(scanf("%s", bufferNumero)==1)
+    {
+        if(validarIntString(bufferNumero) == 0)
+        {
+            *numeroIngresado = atoi(bufferNumero);
+            retorno = 0;
+        }
+    }
+    return retorno;
 }
 static int getFloat(float* numeroIngresado)
 {
+    int retorno = 1;
+    char bufferNumero[1000];
     myFpurge();
-    return scanf("%f", numeroIngresado);
+    if(scanf("%s", bufferNumero)==1)
+    {
+        if(validarFloatString(bufferNumero) == 0)
+        {
+            *numeroIngresado = atof(bufferNumero);
+            retorno = 0;
+        }
+    }
+    return retorno;
 }
 static int getChar(char* caracterIngresado)
 {
@@ -25,6 +46,78 @@ static int getString(char textoIngresado[])
 {
     myFpurge();
     return scanf("%s", textoIngresado);
+}
+void utn_myStrncpy (char *destino, char *origen, int tamanio)
+{
+    strncpy(destino, origen, tamanio);
+    destino[tamanio - 1] = '\0';
+}
+/**
+* \brief Toma una cadena y evalua si se trata de un numero entero
+* \param stringEntero Es la cadena que vamos a evaluar si se trata de un entero
+* \return En caso de exito retorna 0, si no es un entero 1
+*
+*/
+int validarIntString(char *stringEntero)
+{
+    int i;
+    int retorno = 1;
+    int tamanioStringEntero;
+    tamanioStringEntero = strlen(stringEntero);
+    if( stringEntero[0] == '-' ||
+        stringEntero[0] == '+' ||
+        (stringEntero[0]>='0' && stringEntero[0]<='9'))
+    {
+        retorno = 0;
+        for(i=1; i<tamanioStringEntero; i++)
+        {
+            if(!(stringEntero[i]>='0' && stringEntero[i]<='9'))
+            {
+                retorno = 1;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si se trata de un flotante
+* \param stringFlotante Es la cadena que vamos a evaluar si se trata de un flotante
+* \return En caso de exito retorna 0, si no es un flotante 1
+*
+*/
+int validarFloatString(char *stringFlotante)
+{
+    int i;
+    int retorno = 1;
+    int contadorDePuntos = 0;
+    int tamanioStringFlotante;
+    tamanioStringFlotante = strlen(stringFlotante);
+    if((stringFlotante[0]== '+' ||
+        stringFlotante[0]== '-') &&
+        stringFlotante[1]== '.')
+    {
+        retorno = 1;
+    }
+    else if(stringFlotante[0] == '-' ||
+            stringFlotante[0] == '+' ||
+            (stringFlotante[0]>='0' && stringFlotante[0]<='9'))
+    {
+        retorno = 0;
+        for(i=1; i<tamanioStringFlotante; i++)
+        {
+            if(stringFlotante[i]=='.' && contadorDePuntos == 0)
+            {
+                contadorDePuntos = 1;
+            }
+            else if(!(stringFlotante[i]>='0' && stringFlotante[i]<='9'))
+            {
+                retorno = 1;
+                break;
+            }
+        }
+    }
+    return retorno;
 }
 /**
 * \brief Solicita un entero al usuario y lo devuelve a traves de pResultado si es validado

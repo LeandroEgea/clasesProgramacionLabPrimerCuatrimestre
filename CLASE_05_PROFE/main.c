@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utn.h"
 #include "array.h"
 
@@ -7,7 +8,7 @@
 
 int main()
 {
-    int edades[CANTIDAD_EMPLEADOS] = {50, 10, 30, 50, 1, 22};
+    int edades[CANTIDAD_EMPLEADOS] = {50, -5, 30, 50, 1, 22};
     //int i;
 /*
     for(i=0;i < CANTIDAD_EMPLEADOS;i++)
@@ -17,24 +18,9 @@ int main()
             edades[i] = DATO_INVALIDO;
         }
     }
-    */
+*/
 
-
-    int cantidad;
-    int numero;
-    char bufferNumero[4097];
-    scanf("%s", bufferNumero);
-    if(validarIntString(bufferNumero) == 0)
-    {
-        numero = atoi(bufferNumero);
-    }
-
-    strncpy(nombre, bufferNumero, 3);
-    printf("\n---> %s", nombre);
-
-
-
-    //array_ordenar2(edades,CANTIDAD_EMPLEADOS,0);
-    //array_mostrar(edades,CANTIDAD_EMPLEADOS);
+    array_ordenar(edades,CANTIDAD_EMPLEADOS,1);
+    array_mostrar(edades,CANTIDAD_EMPLEADOS);
     return 0;
 }

@@ -1,5 +1,7 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
+void utn_myStrncpy (char *destino, char *origen, int tamanio);
+
 int utn_getEntero(  int *pResultado,
                     char mensaje[],
                     char mensajeError[],

@@ -1,3 +1,12 @@
+#ifndef UTN_H_INCLUDED
+#define UTN_H_INCLUDED
+
+void utn_myStrncpy (char *destino, char *origen, int tamanio);
+
+int validarIntString(char *stringEntero);
+
+int validarFloatString(char *stringFlotante);
+
 int utn_getEntero(  int *pResultado,
                     char mensaje[],
                     char mensajeError[],
@@ -68,3 +77,5 @@ int utn_retornarTotal(int listado[], int tamanio);
 float utn_retornarPromedio(int listado[], int tamanio);
 
 int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int maximo);
+
+#endif // UTN_H_INCLUDED

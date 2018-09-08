@@ -31,3 +31,23 @@
 	"utn.h"
 	"array.h"
 
+1536343660 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536340975 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/array.h
+
+1536345820 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+
+1536345821 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/utn.h
+
+1536343083 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_05_PROFE/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+
