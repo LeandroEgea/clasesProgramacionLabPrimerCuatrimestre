@@ -1,7 +1,7 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
 
-int utn_getStringAlfabetico(char *textoIngresado, int tamanio);
+int utn_getStringAlfabetico(char *textoIngresado, int tamanio, int espacios);
 
 void utn_myStrncpy (char *destino, char *origen, int tamanio);
 
@@ -10,6 +10,8 @@ int utn_validarIntString(char *stringEntero);
 int utn_validarFloatString(char *stringFlotante);
 
 int utn_validarStringAlfabetico(char *stringAlfabetico, int tamanio);
+
+int utn_validarStringAlfabeticoConEspacios(char *stringAlfabetico, int tamanio);
 
 int utn_getEntero(  int *pResultado,
                     char mensaje[],

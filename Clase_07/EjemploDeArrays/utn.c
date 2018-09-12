@@ -48,7 +48,15 @@ static int getString(char textoIngresado[])
     myFpurge();
     return scanf("%s", textoIngresado);
 }
-int utn_getStringAlfabetico(char *textoIngresado, int tamanio)
+/**
+* \brief El usuario ingresa una cadena con gets y se evalua si es alfabetica
+* \param textoIngresado Recibe el texto ingresado en caso de exito
+* \param tamanio es el tamanio de la cadena
+* \param espacios si recibe un 0 no valida los espacios, pero si con un 1
+* \return En caso de exito retorna 0, si no es un string solo de letras un 1
+*
+*/
+int utn_getStringAlfabetico(char *textoIngresado, int tamanio, int espacios)
 {
     int retorno = 1;
     int tamanioStringBuffer;
@@ -56,12 +64,14 @@ int utn_getStringAlfabetico(char *textoIngresado, int tamanio)
     myFpurge();
     fgets(bufferString, 1000, stdin);
     tamanioStringBuffer = strlen(bufferString) - 1;
-    if( tamanioStringBuffer<tamanio &&
-        utn_validarStringAlfabetico(bufferString, tamanioStringBuffer) == 0)
+    if(tamanioStringBuffer<tamanio)
     {
-        strncpy(textoIngresado, bufferString, tamanio);
-        textoIngresado[tamanioStringBuffer] = '\0';
-        retorno = 0;
+        if( (espacios==0 && utn_validarStringAlfabetico(bufferString, tamanioStringBuffer) == 0) ||
+            (espacios==1 && utn_validarStringAlfabeticoConEspacios(bufferString, tamanioStringBuffer) == 0))
+        {
+            utn_myStrncpy(textoIngresado, bufferString, tamanio);
+            retorno = 0;
+        }
     }
     return retorno;
 }
@@ -140,7 +150,8 @@ int utn_validarFloatString(char *stringFlotante)
 /**
 * \brief Toma una cadena y evalua si se trata de un string solo de letras
 * \param stringAlfabetico Es la cadena que vamos a evaluar si se trata de un string alfabetico
-* \return En caso de exito retorna 0, si no es un entero 1
+* \param tamanio es el tamanio de la cadena sin el (\ n) y el (\ 0)
+* \return En caso de exito retorna 0, si no es un string solo de letras un 1
 *
 */
 int utn_validarStringAlfabetico(char *stringAlfabetico, int tamanio)
@@ -153,6 +164,31 @@ int utn_validarStringAlfabetico(char *stringAlfabetico, int tamanio)
     {
         stringAuxiliar[i] = tolower(stringAuxiliar[i]);
         if(!(stringAuxiliar[i]>='a' && stringAuxiliar[i]<='z'))
+        {
+            retorno = 1;
+            break;
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si se trata de un string de letras y espacios
+* \param stringAlfabetico Es la cadena que vamos a evaluar
+* \param tamanio es el tamanio de la cadena sin el (\ n) y el (\ 0)
+* \return En caso de exito retorna 0, si no es un string de letras y espacios un 1
+*
+*/
+int utn_validarStringAlfabeticoConEspacios(char *stringAlfabetico, int tamanio)
+{
+    int i;
+    int retorno = 0;
+    char stringAuxiliar[tamanio];
+    strncpy(stringAuxiliar, stringAlfabetico, tamanio);
+    for(i=0; i<tamanio; i++)
+    {
+        stringAuxiliar[i] = tolower(stringAuxiliar[i]);
+        if(!((stringAuxiliar[i]>='a' && stringAuxiliar[i]<='z') || stringAuxiliar[i] ==' ')
+            || (stringAuxiliar[i] == ' ' && stringAuxiliar[i-1] == ' '))
         {
             retorno = 1;
             break;

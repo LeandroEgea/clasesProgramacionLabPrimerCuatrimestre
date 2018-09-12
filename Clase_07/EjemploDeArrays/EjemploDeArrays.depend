@@ -30,3 +30,34 @@
 	"utn.h"
 	"utnmath.h"
 
+1536779445 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536779445 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/array.h
+
+1536779445 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/utnmath.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+	"utnmath.h"
+
+1536780627 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/utn.h
+
+1536779445 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/utnmath.h
+
+1536780675 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"array.h"
+
+1536781183 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_07/EjemploDeArrays/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+

@@ -8,7 +8,7 @@
 int main()
 {
     char nombre[CANTIDAD];
-    if(utn_getStringAlfabetico(nombre, CANTIDAD) == 0)
+    if(utn_getStringAlfabetico(nombre, CANTIDAD, 1) == 0)
     {
         printf("nombre: %s\n", nombre);
     }
@@ -16,10 +16,6 @@ int main()
     {
         printf("error");
     }
-
-
-
-
 
 
  /*   char usuario[CANTIDAD];
