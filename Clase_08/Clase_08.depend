@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1536874361 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536874361 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/array.h
+
+1536884544 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1536884593 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utn.h
+
+1536874361 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utnmath.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+	"utnmath.h"
+
+1536874361 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utnmath.h
+
