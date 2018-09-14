@@ -22,3 +22,38 @@
 
 1536874361 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utnmath.h
 
+1536944208 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/array.h
+
+1536944208 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	<stdio_ext.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"utn.h"
+
+1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utn.h
+
+1536944208 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utnmath.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+	"utnmath.h"
+
+1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/utnmath.h
+
+1536949453 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
