@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1536944208 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/array.c
+	<stdio.h>
+	<stdlib.h>
+	"array.h"
+
+1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/array.h
+
+1537155569 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1537155569 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.h
+
+1537155569 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1536944208 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utnmath.c
+	<stdio_ext.h>
+	<stdlib.h>
+	"utn.h"
+	"utnmath.h"
+
+1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utnmath.h
+
+1537066931 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/other.c
+

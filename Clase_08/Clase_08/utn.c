@@ -4,9 +4,6 @@
 #include <ctype.h>
 #include "utn.h"
 
-
-
-
 /**
     utn_getNombre :
     @param
@@ -910,6 +907,36 @@ int utn_getNombre(  char* pNombre, int limite, char* msg,
                 printf("%s", msgErr);
             }
         }while(reintentos>0);
+    }
+    return retorno;
+}
+void utn_swapEmpleado(Empleado *pEmpleadoUno, Empleado *pEmpleadoDos)
+{
+    Empleado bufferEmpleado;
+    bufferEmpleado = *pEmpleadoUno;
+    *pEmpleadoUno = *pEmpleadoDos;
+    *pEmpleadoDos = bufferEmpleado;
+}
+int utn_sortEmpleadosPorNombre(Empleado *pEmpleado, int cantidadEmpleados)
+{
+    int retorno = -1;
+    int swap;
+    int i;
+    if(pEmpleado != NULL && cantidadEmpleados > 0)
+    {
+        do
+        {
+            swap = 0;
+            for(i=0;i<cantidadEmpleados-1;i++)
+            {
+                if(strcmp(pEmpleado[i].nombre, pEmpleado[i+1].nombre)>0)
+                {
+                    swap = 1;
+                    utn_swapEmpleado(&(pEmpleado[i]), &(pEmpleado[i+1]));
+                }
+            }
+        }while(swap != 0);
+        retorno = 0;
     }
     return retorno;
 }

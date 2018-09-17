@@ -1,6 +1,14 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
 
+typedef struct sEmpleado
+{
+    char nombre[50];
+    char apellido[50];
+    char DNI[20];
+    //float salario;
+}Empleado;
+
 int utn_getStringAlfabetico(char *textoIngresado, int tamanio, int espacios);
 
 void utn_myStrncpy (char *destino, char *origen, int tamanio);
@@ -88,5 +96,10 @@ int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int m
 
 int utn_getNombre(  char* pNombre, int limite, char* msg,
                     char msgErr[], int reintentos);
+
+
+void utn_swapEmpleado(Empleado *pEmpleadoUno, Empleado *pEmpleadoDos);
+
+int utn_sortEmpleadosPorNombre(Empleado *pEmpleado, int cantidadEmpleados);
 
 #endif // UTN_H_INCLUDED

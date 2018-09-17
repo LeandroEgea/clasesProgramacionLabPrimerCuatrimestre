@@ -5,45 +5,14 @@
 
 #define CANTIDAD_EMPLEADOS 3
 
-typedef struct sEmpleado
+/*typedef struct sEmpleado
 {
     char nombre[50];
     char apellido[50];
     char DNI[20];
     //float salario;
-}Empleado;
+}Empleado;*/
 
-void utn_swapEmpleado(Empleado *pEmpleadoUno, Empleado *pEmpleadoDos)
-{
-    printf("chau\n");
-    Empleado bufferEmpleado;
-    bufferEmpleado = *pEmpleadoUno;
-    *pEmpleadoUno = *pEmpleadoDos;
-    *pEmpleadoDos = bufferEmpleado;
-}
-int utn_sortEmpleadosPorNombre(Empleado *pEmpleado, int limite)
-{
-    int retorno = -1;
-    int swap;
-    int i;
-    if(pEmpleado != NULL && limite > 0)
-    {
-        do
-        {
-            swap = 0;
-            for(i=0;i<limite-1;i++)
-            {
-                if(strcmp(pEmpleado[i].nombre, pEmpleado[i+1].nombre)>0)
-                {
-                    swap = 1;
-                    utn_swapEmpleado(&(pEmpleado[i]), &(pEmpleado[i+1]));
-                }
-            }
-        }while(swap != 0);
-        retorno = 0;
-    }
-    return retorno;
-}
 int main()
 {
     Empleado trabajadores[CANTIDAD_EMPLEADOS];
