@@ -5,6 +5,6 @@
 int main()
 {
     char Texto[20];
-    if(utn_getWeb(Texto, 20, "\nnn", "\nnoooo", 1)==0)
+    if(utn_getCelularArgentino(Texto, 20, "\nnn", "\nnoooo", 6)==0)
         printf("\n%s", Texto);
 }

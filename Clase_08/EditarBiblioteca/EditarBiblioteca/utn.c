@@ -186,7 +186,31 @@ static int isValidEntero(char *pBuffer, int limite)
     }
     return retorno;
 }
-
+/**
+* \brief Evalua si se trata de un entero sin signo
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidEnteroSoloNumeros(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if  (pBuffer != NULL && limite > 0)
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
 /**
 * \brief Evalua si se trata de un entero
 * \param pBuffer Es la cadena que evaluamos
@@ -400,6 +424,32 @@ static int isValidWeb(char *pBuffer, int limite)
     {
         printf("\nwww.ejemplo.com");
         retorno = 0;
+    }
+    return retorno;
+}
+
+/**
+* \brief Evalua si se trata de un celular
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidCelularArgentino(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) == 12 &&)
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if(!(tolower(pBuffer[i]) >= 'a' && tolower(pBuffer[i]) <= 'z'))
+            {
+                retorno = 0;
+                break;
+            }
+        }
     }
     return retorno;
 }
@@ -770,6 +820,82 @@ int utn_getWeb( char *pWeb, int limite, char *mensaje,
                 isValidWeb(buffer, limite))
             {
                 strncpy(pWeb, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si puede ser una tarjeta
+* \param pTarjeta Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getTarjeta( char *pTarjeta, int limite, char *mensaje,
+                    char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pTarjeta != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidEnteroSoloNumeros(buffer, limite) &&
+                strlen(buffer) == 16)
+            {
+                strncpy(pTarjeta, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+
+/**
+* \brief Toma una cadena y evalua si puede ser un celular argentino
+* \param pCelular Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
+                            char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pCelular != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidCelularArgentino(buffer, limite))
+            {
+                strncpy(pCelular, buffer, limite);
                 retorno = 0;
                 break;
             }

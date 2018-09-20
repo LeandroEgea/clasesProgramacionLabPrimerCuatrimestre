@@ -6,14 +6,14 @@
 
 1536944208 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/array.h
 
-1537155569 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/main.c
+1537477678 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/main.c
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 
-1537155569 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.h
+1537477678 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.h
 
-1537155569 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.c
+1537477105 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>

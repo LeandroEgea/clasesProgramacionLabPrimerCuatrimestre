@@ -34,6 +34,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="producto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="producto.h" />
 		<Unit filename="utn.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -37,6 +37,12 @@ int utn_getFecha(   char *pFecha, int limite, char *mensaje,
 int utn_getWeb( char *pWeb, int limite, char *mensaje,
                 char *mensajeError, int reintentos);
 
+int utn_getTarjeta( char *pTarjeta, int limite, char *mensaje,
+                    char *mensajeError, int reintentos);
+
+int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
+                            char *mensajeError, int reintentos);
+
 //ARRAYS
 
 int utn_inicializarArrayEnteros(int* pArray, int limite, int valor);
