@@ -30,3 +30,17 @@
 
 1537066931 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/other.c
 
+1537487749 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1537480983 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.h
+
+1537487935 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase_08/EditarBiblioteca/EditarBiblioteca/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+

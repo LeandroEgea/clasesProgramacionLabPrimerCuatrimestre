@@ -429,7 +429,7 @@ static int isValidWeb(char *pBuffer, int limite)
 }
 
 /**
-* \brief Evalua si se trata de un celular
+* \brief Evalua si se trata de un celular (XX-XXXX-XXXX)
 * \param pBuffer Es la cadena que evaluamos
 * \param limite Es el tamano maximo del string
 * \return En caso de exito retorna 1, si no 0
@@ -439,12 +439,62 @@ static int isValidCelularArgentino(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) == 12 &&)
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) == 12 &&
+        pBuffer[2] == '-' && pBuffer[7] == '-')
     {
         retorno = 1;
         for(i=0;i < limite && pBuffer[i] != '\0';i++)
         {
-            if(!(tolower(pBuffer[i]) >= 'a' && tolower(pBuffer[i]) <= 'z'))
+            if((pBuffer[i] < '0' || pBuffer[i] > '9') && i!=2 && i!=7)
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si se trata de un tipo de archivo
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \param extension Es la extension que tiene el archivo (poner sin el punto)
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidArchivoPorTipo(char *pBuffer, int limite, char *pExtension)
+{
+    int retorno = 0;
+    int i;
+    //int recorreExtension = 0;
+    if(pBuffer != NULL && limite > 0 && pExtension)
+    {
+        printf("hola");
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+
+            if(pBuffer[i] == '.' && i != 0)
+            {
+                retorno = 1;
+                /*for(j = i;j < limite && pBuffer[j] != '\0' && pExtension[recorreExtension] != '\0';j++)
+                {
+                    if(pBuffer[i] != pExtension[recorreExtension])
+                    {
+                        retorno = 0;
+                        break;
+                    }
+                    recorreExtension++;
+                }*/
+                break;
+            }
+            else if(!(  (pBuffer[i] == ' ' || pBuffer[i] == '#' ||
+                         pBuffer[i] == '(' || pBuffer[i] == ')' ||
+                         pBuffer[i] == ';' || pBuffer[i] == '=' ||
+                         pBuffer[i] == '@' || pBuffer[i] == '[')||
+                        (pBuffer[i] >= '+' && pBuffer[i] <= '-') ||
+                        (pBuffer[i] >= '0' && pBuffer[i] <= '9') ||
+                        (pBuffer[i] >= 'A' && pBuffer[i] <= 'Z') ||
+                        (pBuffer[i] >= ']' && pBuffer[i] <= 'z')))
             {
                 retorno = 0;
                 break;
@@ -907,6 +957,45 @@ int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
     }
     return retorno;
 }
+/**
+* \brief Toma una cadena y evalua si es un tipo de archivo
+* \param pArchivo Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param pExtension Es la extension que tiene el archivo (poner sin el punto)
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *pExtension,
+                            char *mensaje, char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pArchivo != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidArchivoPorTipo(buffer, limite, pExtension))
+            {
+                strncpy(pArchivo, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+
 //SWAP
 
 /**

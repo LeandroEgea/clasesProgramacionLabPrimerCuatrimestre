@@ -4,6 +4,9 @@
 #include "utn.h"
 #include "producto.h"
 
+static int lugarLibre(Producto arrayProducto[],int len);
+static int getNextId();
+
 int producto_init(Producto arrayProducto[],int len,int valor)
 {
     int retorno = -1;
@@ -19,12 +22,16 @@ int producto_init(Producto arrayProducto[],int len,int valor)
     return retorno;
 }
 
-int producto_altaProducto(Producto arrayProducto[],int len,int indice)
+int producto_altaProducto(Producto arrayProducto[],int len)
 {
     int retorno = -1;
+    int indice;
     char auxNombre[50];
     char auxDescripcion[200];
     float auxPrecio=13.55;
+
+    indice = lugarLibre(arrayProducto,len);
+
     if( arrayProducto != NULL && len > 0 &&
         indice >= 0 && indice < len
         && arrayProducto[indice].isEmpty)
@@ -36,6 +43,7 @@ int producto_altaProducto(Producto arrayProducto[],int len,int indice)
             strncpy(arrayProducto[indice].descripcion,auxDescripcion,200);
             arrayProducto[indice].precio = auxPrecio;
             arrayProducto[indice].isEmpty = 0;
+            arrayProducto[indice].idProducto = getNextId();
             retorno = 0;
         }
     }
@@ -62,7 +70,7 @@ int producto_mostrar(Producto arrayProducto[],int len)
 }
 
 
-int producto_lugarLibre(Producto arrayProducto[],int len, int* indice)
+static int lugarLibre(Producto arrayProducto[],int len)
 {
     int retorno = -1;
     int i;
@@ -72,12 +80,33 @@ int producto_lugarLibre(Producto arrayProducto[],int len, int* indice)
         {
             if(arrayProducto[i].isEmpty)
             {
-                *indice = i;
-                retorno = 0;
+                retorno = i;
                 break;
             }
-        retorno = -2;
         }
     }
     return retorno;
 }
+
+
+static int getNextId()
+{
+    static int ultimoId=-1;
+    ultimoId++;
+    return ultimoId;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
