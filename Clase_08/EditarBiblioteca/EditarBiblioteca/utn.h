@@ -43,8 +43,17 @@ int utn_getTarjeta( char *pTarjeta, int limite, char *mensaje,
 int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
                             char *mensajeError, int reintentos);
 
+int utn_getArchivo( char *pArchivo, int limite, char *mensaje,
+                    char *mensajeError, int reintentos);
+
 int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *extension,
                             char *mensaje, char *mensajeError, int reintentos);
+
+int utn_getCodigoPostal(char *pCodigoPostal, int limite, char *mensaje,
+                        char *mensajeError, int reintentos);
+
+int utn_getOpcionEntreDos(  char *pOpcion, int limite, char *pOpcionUno,  char *pOpcionDos,
+                            char *pElegirOpcionUno, char *pElegirOpcionDos, int reintentos);
 
 //ARRAYS
 
@@ -57,6 +66,8 @@ int utn_calcularMaximoArrayEnteros(int* pArray, int limite, int* pMaximo);
 int utn_minimoDesdeEnArrayEnteros(int *pArray, int limite, int desde, int *pMinimo);
 
 int utn_sortArrayEnterosPorBurbujeo(int *pArray, int limite, int orden);
+
+int utn_sortArrayEnterosPorInsercion(int *pArray, int limite, int orden);
 
 int utn_retornarMayor(int listado[], int tamanio);
 

@@ -455,6 +455,47 @@ static int isValidCelularArgentino(char *pBuffer, int limite)
     return retorno;
 }
 /**
+* \brief Evalua si se trata de un archivo
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidArchivo(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int flagPuntoEncontrado = 0;
+    int i;
+    if(pBuffer != NULL && limite > 0)
+    {
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if(pBuffer[i] == '.' && i != 0)
+            {
+                retorno = 1;
+                flagPuntoEncontrado = 1;
+            }
+            else if(    (flagPuntoEncontrado == 0 &&
+                    !(  (pBuffer[i] == ' ' || pBuffer[i] == '#' ||
+                         pBuffer[i] == '(' || pBuffer[i] == ')' ||
+                         pBuffer[i] == ';' || pBuffer[i] == '=' ||
+                         pBuffer[i] == '@' || pBuffer[i] == '[')||
+                        (pBuffer[i] >= '+' && pBuffer[i] <= '-') ||
+                        (pBuffer[i] >= '0' && pBuffer[i] <= '9') ||
+                        (pBuffer[i] >= 'A' && pBuffer[i] <= 'Z') ||
+                        (pBuffer[i] >= ']' && pBuffer[i] <= 'z'))) ||
+                        (flagPuntoEncontrado == 1 &&
+                    !(  (pBuffer[i] >= 'A' && pBuffer[i] <= 'Z') ||
+                        (pBuffer[i] >= 'a' && pBuffer[i] <= 'z'))))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
 * \brief Evalua si se trata de un tipo de archivo
 * \param pBuffer Es la cadena que evaluamos
 * \param limite Es el tamano maximo del string
@@ -466,25 +507,14 @@ static int isValidArchivoPorTipo(char *pBuffer, int limite, char *pExtension)
 {
     int retorno = 0;
     int i;
-    //int recorreExtension = 0;
-    if(pBuffer != NULL && limite > 0 && pExtension)
+    if(pBuffer != NULL && limite > 0 && pExtension!= NULL)
     {
-        printf("hola");
         for(i=0;i < limite && pBuffer[i] != '\0';i++)
         {
 
-            if(pBuffer[i] == '.' && i != 0)
+            if(pBuffer[i] == '.' && i != 0 && strcmp(pExtension, pBuffer + (i+1)) == 0)
             {
                 retorno = 1;
-                /*for(j = i;j < limite && pBuffer[j] != '\0' && pExtension[recorreExtension] != '\0';j++)
-                {
-                    if(pBuffer[i] != pExtension[recorreExtension])
-                    {
-                        retorno = 0;
-                        break;
-                    }
-                    recorreExtension++;
-                }*/
                 break;
             }
             else if(!(  (pBuffer[i] == ' ' || pBuffer[i] == '#' ||
@@ -495,6 +525,34 @@ static int isValidArchivoPorTipo(char *pBuffer, int limite, char *pExtension)
                         (pBuffer[i] >= '0' && pBuffer[i] <= '9') ||
                         (pBuffer[i] >= 'A' && pBuffer[i] <= 'Z') ||
                         (pBuffer[i] >= ']' && pBuffer[i] <= 'z')))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si se trata de un codigo postal
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidCodigoPostal(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) == 8)
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if( ((i == 0 || (i >= 5 && i <= 7)) &&
+                !(tolower(pBuffer[i]) >= 'a' && tolower(pBuffer[i]) <= 'z')) ||
+                ((i >= 1 && i <= 4) &&
+                !(pBuffer[i] >= '0' && pBuffer[i] <= '9')))
             {
                 retorno = 0;
                 break;
@@ -958,6 +1016,43 @@ int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
     return retorno;
 }
 /**
+* \brief Toma una cadena y evalua si es un archivo
+* \param pArchivo Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getArchivo( char *pArchivo, int limite, char *mensaje,
+                    char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pArchivo != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidArchivo(buffer, limite))
+            {
+                strncpy(pArchivo, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
 * \brief Toma una cadena y evalua si es un tipo de archivo
 * \param pArchivo Recibe el texto ingresado en caso de exito
 * \param limite Es el tamano maximo del string
@@ -973,8 +1068,8 @@ int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *pExtension,
 {
     int retorno=-1;
     char buffer[4096];
-    if( pArchivo != NULL && limite > 0 && mensaje != NULL &&
-        mensajeError != NULL && reintentos>=0)
+    if( pArchivo != NULL && limite > 0 && pExtension != NULL &&
+        mensaje != NULL && mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -990,6 +1085,88 @@ int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *pExtension,
             else
             {
                 printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si es un codigo postal
+* \param pArchivo Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getCodigoPostal(char *pCodigoPostal, int limite, char *mensaje,
+                        char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pCodigoPostal != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidCodigoPostal(buffer, limite))
+            {
+                strncpy(pCodigoPostal, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si tiene solo letras
+* \param pOpcion Recibe la opcion ingresada en caso de exito
+* \param limite Es el tamano maximo del string
+* \param pOpcionUno Es el texto que se recibe en caso de elegirse la primera opcion
+* \param pOpcionDos Es el texto que se recibe en caso de elegirse la segunda opcion
+* \param pElegirOpcionUno Es el caracter que debe introducir el usuario para la opcion uno
+* \param pElegirOpcionDos Es el caracter que debe introducir el usuario para la opcion dos
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getOpcionEntreDos(  char *pOpcion, int limite, char *pOpcionUno,  char *pOpcionDos,
+                            char *pElegirOpcionUno, char *pElegirOpcionDos, int reintentos)
+{
+    int retorno=-1;
+    char bufferOpcion[4096];
+    if( pOpcion != NULL && limite > 0 && pOpcionUno != NULL && pOpcionDos != NULL &&
+        pElegirOpcionUno != NULL && pElegirOpcionDos != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s - %s\n%s - %s\n", pElegirOpcionUno, pOpcionUno, pElegirOpcionDos, pOpcionDos);
+            if( getString(bufferOpcion, limite) == 0 &&
+                (!strcmp(bufferOpcion, pElegirOpcionUno)))
+            {
+                strncpy(pOpcion, pOpcionUno, limite);
+                retorno = 0;
+                break;
+            }
+            else if(!strcmp(bufferOpcion, pElegirOpcionDos))
+            {
+                strncpy(pOpcion, pOpcionDos, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\nOpcion Invalida");
             }
         }while(reintentos>=0);
     }
@@ -1168,6 +1345,49 @@ int utn_sortArrayEnterosPorBurbujeo(int *pArray, int limite, int orden)
                 }
             }
         }while(flagSwap==1);
+        retorno = 0;
+    }
+    return retorno;
+}
+/**
+* \brief Ordena todos los numeros del array
+* \param pArray Es el array de enteros que vamos a ordenar
+* \param limite Es la cantidad de numeros q tiene el array
+* \param orden Establece de mayor a menor(0) o de menor a mayor (1)
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_sortArrayEnterosPorInsercion(int *pArray, int limite, int orden)
+{
+    int retorno=-1;
+    int i;
+    int j;
+    int auxiliarNumero;
+    if(pArray != NULL && limite > 0 && (orden == 0 || orden == 1))
+    {
+        for(i=1;i < limite; i++)
+        {
+            auxiliarNumero = pArray[i];
+            j = i - 1;
+            if(orden == 0)
+            {
+                while ((j >= 0) && (auxiliarNumero < pArray[j]))
+                {
+                    pArray[j + 1] = pArray[j];
+                    j--;
+                }
+                pArray[j + 1] = auxiliarNumero;
+            }
+            else if(orden == 1)
+            {
+                while ((j >= 0) && (auxiliarNumero > pArray[j]))
+                {
+                    pArray[j + 1] = pArray[j];
+                    j--;
+                }
+                pArray[j + 1] = auxiliarNumero;
+            }
+        }
         retorno = 0;
     }
     return retorno;
