@@ -52,6 +52,12 @@ int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *extension,
 int utn_getCodigoPostal(char *pCodigoPostal, int limite, char *mensaje,
                         char *mensajeError, int reintentos);
 
+int utn_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
+                        char *mensajeError, int reintentos);
+
+int utn_getDni( char *pDocumento, int limite, char *mensaje,
+                char *mensajeError, int reintentos);
+
 int utn_getOpcionEntreDos(  char *pOpcion, int limite, char *pOpcionUno,  char *pOpcionDos,
                             char *pElegirOpcionUno, char *pElegirOpcionDos, int reintentos);
 

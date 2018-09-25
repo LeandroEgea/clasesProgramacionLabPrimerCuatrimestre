@@ -349,9 +349,10 @@ static int isValidTelefonoFijo(char *pBuffer, int limite)
     return retorno;
 }
 /**
-* \brief Evalua si es una fecha valida (dd/mm/aaaa)
-* \param pBuffer Es la cadena que evaluamos
-* \param limite Es el tamano maximo del string
+* \brief Evalua si es una fecha valida
+* \param dia Toma el dia
+* \param mes Toma el mes
+* \param anio Toma el anio
 * \return En caso de exito retorna 1, si no 0
 *
 */
@@ -553,6 +554,71 @@ static int isValidCodigoPostal(char *pBuffer, int limite)
                 !(tolower(pBuffer[i]) >= 'a' && tolower(pBuffer[i]) <= 'z')) ||
                 ((i >= 1 && i <= 4) &&
                 !(pBuffer[i] >= '0' && pBuffer[i] <= '9')))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si es un Cuil o Cuit (XX-XXXXXXXX-X)
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidCuilOrCuit(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) == 13 &&
+        pBuffer[2] == '-' && pBuffer[11] == '-')
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if((pBuffer[i] < '0' || pBuffer[i] > '9') && i!=2 && i!=11)
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si es un Dni (XX.XXX.XXX) o (X.XXX.XXX)
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidDni(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) == 10 &&
+        pBuffer[2] == '.' && pBuffer[6] == '.')
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if((pBuffer[i] < '0' || pBuffer[i] > '9') && i!=2 && i != 6)
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    else if(pBuffer != NULL && limite > 0 && strlen(pBuffer) == 9 &&
+            pBuffer[1] == '.' && pBuffer[5] == '.')
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if((pBuffer[i] < '0' || pBuffer[i] > '9') && i!=1 && i!=5)
             {
                 retorno = 0;
                 break;
@@ -979,7 +1045,7 @@ int utn_getTarjeta( char *pTarjeta, int limite, char *mensaje,
 }
 
 /**
-* \brief Toma una cadena y evalua si puede ser un celular argentino
+* \brief Toma una cadena y evalua si puede ser un celular argentino (XX-XXXX-XXXX)
 * \param pCelular Recibe el texto ingresado en caso de exito
 * \param limite Es el tamano maximo del string
 * \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
@@ -1116,6 +1182,80 @@ int utn_getCodigoPostal(char *pCodigoPostal, int limite, char *mensaje,
                 isValidCodigoPostal(buffer, limite))
             {
                 strncpy(pCodigoPostal, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si es un Cuil o Cuit (XX-XXXXXXXX-X)
+* \param pDocumento Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
+                        char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pDocumento != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidCuilOrCuit(buffer, limite))
+            {
+                strncpy(pDocumento, buffer, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si es un Dni (XX.XXX.XXX) o (X.XXX.XXX)
+* \param pDocumento Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getDni( char *pDocumento, int limite, char *mensaje,
+                char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pDocumento != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidDni(buffer, limite))
+            {
+                strncpy(pDocumento, buffer, limite);
                 retorno = 0;
                 break;
             }
@@ -1321,7 +1461,7 @@ int utn_minimoDesdeEnArrayEnteros(int *pArray, int limite, int desde, int *pMini
 * \brief Ordena todos los numeros del array
 * \param pArray Es el array de enteros que vamos a ordenar
 * \param limite Es la cantidad de numeros q tiene el array
-* \param orden Establece de mayor a menor(0) o de menor a mayor (1)
+* \param orden Establece de menor a mayor(0) o de mayor a menor (1)
 * \return En caso de exito retorna 0, si no -1
 *
 */
@@ -1337,8 +1477,8 @@ int utn_sortArrayEnterosPorBurbujeo(int *pArray, int limite, int orden)
             flagSwap = 0;
             for(j=0;j<(limite-1);j++)
             {
-                if( (orden == 0 && pArray[j] < pArray[j+1]) ||
-                    (orden == 1 && pArray[j] > pArray[j+1]))
+                if( (orden == 0 && pArray[j] > pArray[j+1]) ||
+                    (orden == 1 && pArray[j] < pArray[j+1]))
                 {
                     flagSwap = 1;
                     utn_swapEnteros(&pArray[j], &pArray[j+1]);
@@ -1353,7 +1493,7 @@ int utn_sortArrayEnterosPorBurbujeo(int *pArray, int limite, int orden)
 * \brief Ordena todos los numeros del array
 * \param pArray Es el array de enteros que vamos a ordenar
 * \param limite Es la cantidad de numeros q tiene el array
-* \param orden Establece de mayor a menor(0) o de menor a mayor (1)
+* \param orden Establece de menor a mayor(0) o de mayor a menor (1)
 * \return En caso de exito retorna 0, si no -1
 *
 */

@@ -36,8 +36,8 @@ int producto_altaProducto(Producto arrayProducto[],int len)
         indice >= 0 && indice < len
         && arrayProducto[indice].isEmpty)
     {
-        if( !utn_getNombre(auxNombre,50,"Nombre producto?\n","nombre no valido\n",2) &&
-            !utn_getNombre(auxDescripcion,200,"Descripcion producto?\n","descrpcion no valido\n",2))
+        if( !utn_getAlfabetico(auxNombre,50,"Nombre producto?\n","nombre no valido\n",2) &&
+            !utn_getAlfabetico(auxDescripcion,200,"Descripcion producto?\n","descrpcion no valido\n",2))
         {
             strncpy(arrayProducto[indice].nombre,auxNombre,50);
             strncpy(arrayProducto[indice].descripcion,auxDescripcion,200);
