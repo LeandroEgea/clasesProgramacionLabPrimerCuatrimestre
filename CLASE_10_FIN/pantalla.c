@@ -205,4 +205,38 @@ int pantalla_mostrar(Pantalla* array, int len)
     return retorno;
 }
 
-int pantalla_ordenar(Pantalla* array, int len);
+int pantalla_ordenar(Pantalla* array, int len, int orden)
+{
+    int retorno=-1;
+    int i;
+    int j;
+    int auxiliarNumero;
+    if(array != NULL && len > 0 && (orden == 0 || orden == 1))
+    {
+        for(i=1;i < len; i++)
+        {
+            auxiliarNumero = pArray[i];
+            j = i - 1;
+            if(orden == 0)
+            {
+                while ((j >= 0) && (auxiliarNumero < pArray[j]))
+                {
+                    array[j + 1] = array[j];
+                    j--;
+                }
+                array[j + 1] = auxiliarNumero;
+            }
+            else if(orden == 1)
+            {
+                while ((j >= 0) && (auxiliarNumero > pArray[j]))
+                {
+                    array[j + 1] = array[j];
+                    j--;
+                }
+                array[j + 1] = auxiliarNumero;
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}

@@ -50,8 +50,14 @@ int main()
     Pantalla arrayPantallas[CANTIDAD_PANTALLAS];
     pantalla_init(arrayPantallas,CANTIDAD_PANTALLAS);
     pantalla_alta(arrayPantallas,CANTIDAD_PANTALLAS);
-    //pantalla_modificar(arrayPantallas, CANTIDAD_PANTALLAS, 2);
-    pantalla_baja(arrayPantallas, CANTIDAD_PANTALLAS, 2);
+    pantalla_alta(arrayPantallas,CANTIDAD_PANTALLAS);
+    pantalla_alta(arrayPantallas,CANTIDAD_PANTALLAS);
+    pantalla_alta(arrayPantallas,CANTIDAD_PANTALLAS);
+    pantalla_modificar(arrayPantallas, CANTIDAD_PANTALLAS, 2);
+    pantalla_modificar(arrayPantallas, CANTIDAD_PANTALLAS, 2);
+    //pantalla_baja(arrayPantallas, CANTIDAD_PANTALLAS, 2);
+    pantalla_mostrar(arrayPantallas,CANTIDAD_PANTALLAS);
+    pantalla_ordenar(arrayPantallas, CANTIDAD_PANTALLAS, 0)
     pantalla_mostrar(arrayPantallas,CANTIDAD_PANTALLAS);
 
     return 0;
