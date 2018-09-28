@@ -92,3 +92,37 @@
 
 1537849563 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/pantalla.h
 
+1538083970 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"pantalla.h"
+
+1538083970 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/utn.h
+
+1538083970 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/pantalla.h
+
+1538083970 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/producto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"producto.h"
+
+1538083970 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/producto.h
+
+1538083970 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1538095667 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/CLASE_10_FIN/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"pantalla.h"
+

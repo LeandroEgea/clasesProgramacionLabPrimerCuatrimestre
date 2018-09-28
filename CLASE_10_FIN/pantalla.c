@@ -142,7 +142,6 @@ int pantalla_modificar(Pantalla* array, int len, int reintentos)
         {
             pantallaModificada->numeroDeTipo = 2;
         }
-        pantallaModificada->id = getNextId();//PREGUNTAR
         retorno = 0;
     }
     return retorno;
@@ -205,7 +204,8 @@ int pantalla_mostrar(Pantalla* array, int len)
     return retorno;
 }
 
-int pantalla_ordenar(Pantalla* array, int len, int orden)
+int pantalla_ordenar(Pantalla* array, int len);
+/*
 {
     int retorno=-1;
     int i;
@@ -239,4 +239,4 @@ int pantalla_ordenar(Pantalla* array, int len, int orden)
         retorno = 0;
     }
     return retorno;
-}
+}*/
