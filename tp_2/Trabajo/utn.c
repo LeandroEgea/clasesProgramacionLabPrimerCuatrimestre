@@ -61,7 +61,7 @@ static int getString(char *pBuffer, int limite)
     int retorno = -1;
     int len;
     char bufferString[4096];
-    if(pBuffer != NULL && limite > 0)
+    if(pBuffer != NULL && limite > 0 )
     {
         myFpurge();
         fgets(bufferString, limite, stdin);
@@ -89,7 +89,7 @@ static int isValidAlfabetico(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if(pBuffer != NULL && limite > 0)
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         retorno = 1;
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
@@ -114,7 +114,7 @@ static int isValidAlfanumerico(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if(pBuffer != NULL && limite > 0)
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         retorno = 1;
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
@@ -140,7 +140,7 @@ static int isValidTexto(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if(pBuffer != NULL && limite > 0)
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         retorno = 1;
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
@@ -170,9 +170,9 @@ static int isValidEntero(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if  ((pBuffer != NULL && limite > 0 ) &&
-            (pBuffer[0] == '-' || pBuffer[0] == '+' ||
-             (pBuffer[0]>='0' && pBuffer[0]<='9')))
+    if  ((pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0) &&
+        (pBuffer[0] == '-' || pBuffer[0] == '+' ||
+        (pBuffer[0]>='0' && pBuffer[0]<='9')))
     {
         retorno = 1;
         for(i=1; i < limite && pBuffer[i] != '\0'; i++)
@@ -197,12 +197,44 @@ static int isValidEnteroSoloNumeros(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if (pBuffer != NULL && limite > 0 )
+    if (pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         retorno = 1;
-        for(i=0; i < limite && pBuffer[i] != '\0'; i++)
+        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
         {
             if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si se trata de un float
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidFloatPositivo(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    int contadorDePuntos = 0;
+    if  ((pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0) &&
+            (( pBuffer[0] == '+' && pBuffer[1] != '.') ||
+            (pBuffer[0]>='0' && pBuffer[0]<='9')))
+    {
+        retorno = 1;
+        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
+        {
+            if(pBuffer[i]=='.' && contadorDePuntos==0)
+            {
+                contadorDePuntos++;
+            }
+            else if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
             {
                 retorno = 0;
                 break;
@@ -223,7 +255,7 @@ static int isValidFloat(char *pBuffer, int limite)
     int retorno = 0;
     int i;
     int contadorDePuntos = 0;
-    if  ((pBuffer != NULL && limite > 0 ) &&
+    if  ((pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0) &&
             (((pBuffer[0] == '-' || pBuffer[0] == '+') && pBuffer[1] != '.') ||
              (pBuffer[0]>='0' && pBuffer[0]<='9')))
     {
@@ -275,8 +307,9 @@ static int isValidMail(char *pBuffer, int limite)
     int flagLetraIntroducida = 0;
     int i;
     if( pBuffer != NULL && limite > 0 &&
-            tolower(pBuffer[0]) >= 'a' &&
-            tolower(pBuffer[0]) <= 'z')
+        strlen(pBuffer) > 0 &&
+        tolower(pBuffer[0]) >= 'a' &&
+        tolower(pBuffer[0]) <= 'z')
     {
         retorno = 1;
         flagLetraIntroducida = 1;
@@ -333,8 +366,8 @@ static int isValidTelefonoFijo(char *pBuffer, int limite)
 {
     int retorno = 0;
     int i;
-    if( pBuffer != NULL && limite > 0 &&
-            strlen(pBuffer) == 9 && pBuffer[4] == '-' && pBuffer[0] == '4')
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
+        strlen(pBuffer) == 9 && pBuffer[4] == '-' && pBuffer[0] == '4')
     {
         retorno = 1;
         for(i=1; i < limite && pBuffer[i] != '\0'; i++)
@@ -389,8 +422,9 @@ static int isValidWeb(char *pBuffer, int limite)
     int flagLetraIntroducida = 0;
     int i;
     if( pBuffer != NULL && limite > 7 &&
-            tolower(pBuffer[0]) == 'w' && tolower(pBuffer[1]) == 'w' &&
-            tolower(pBuffer[2]) == 'w' && pBuffer[3] == '.')
+        strlen(pBuffer) > 0 &&
+        tolower(pBuffer[0]) == 'w' && tolower(pBuffer[1]) == 'w' &&
+        tolower(pBuffer[2]) == 'w' && pBuffer[3] == '.')
     {
         retorno = 1;
         for(i=4; i < limite && pBuffer[i] != '\0'; i++)
@@ -467,7 +501,7 @@ static int isValidArchivo(char *pBuffer, int limite)
     int retorno = 0;
     int flagPuntoEncontrado = 0;
     int i;
-    if(pBuffer != NULL && limite > 0)
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
         {
@@ -508,7 +542,7 @@ static int isValidArchivoPorTipo(char *pBuffer, int limite, char *pExtension)
 {
     int retorno = 0;
     int i;
-    if(pBuffer != NULL && limite > 0 && pExtension!= NULL)
+    if(pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 && pExtension!= NULL)
     {
         for(i=0; i < limite && pBuffer[i] != '\0'; i++)
         {
@@ -760,7 +794,7 @@ int utn_getEntero(  int *pEntero, int limite, char *mensaje,
     int retorno=-1;
     char bufferEntero[4096];
     if( pEntero != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -798,7 +832,7 @@ int utn_getEnteroPositivo(  int *pEntero, int limite, char *mensaje,
     int retorno=-1;
     char bufferEntero[4096];
     if( pEntero != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -843,7 +877,45 @@ int utn_getFloat(   float *pFloat, int limite, char *mensaje,
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(bufferFloat, limite) == 0 &&
-                    isValidFloat(bufferFloat, limite))
+                isValidFloat(bufferFloat, limite))
+            {
+                *pFloat = atof(bufferFloat);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }
+        while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief Toma una cadena y evalua si es un float positivo
+* \param pFloat Recibe el numero ingresado en caso de exito
+* \param limite Es el numero de cifras
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getFloatPositivo(   float *pFloat, int limite, char *mensaje,
+                            char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char bufferFloat[4096];
+    if( pFloat != NULL && limite > 0 && mensaje != NULL &&
+            mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(bufferFloat, limite) == 0 &&
+                isValidFloatPositivo(bufferFloat, limite))
             {
                 *pFloat = atof(bufferFloat);
                 retorno = 0;
@@ -1386,16 +1458,16 @@ void utn_swapEnteros(int *pElementoUno, int *pElementoDos)
 
 /**
 * \brief Realiza un swap de dos empleados
-* \param pEmpleadoUno -
-* \param pEmpleadoDos -
+* \param pUtnEmpleadoUno -
+* \param pUtnEmpleadoDos -
 *
 */
-void utn_swapEmpleado(Empleado *pEmpleadoUno, Empleado *pEmpleadoDos)
+void utn_swapUtnEmpleado(utnEmpleado *pUtnEmpleadoUno, utnEmpleado *pUtnEmpleadoDos)
 {
-    Empleado bufferEmpleado;
-    bufferEmpleado = *pEmpleadoUno;
-    *pEmpleadoUno = *pEmpleadoDos;
-    *pEmpleadoDos = bufferEmpleado;
+    utnEmpleado bufferUtnEmpleado;
+    bufferUtnEmpleado = *pUtnEmpleadoUno;
+    *pUtnEmpleadoUno = *pUtnEmpleadoDos;
+    *pUtnEmpleadoDos = bufferUtnEmpleado;
 }
 
 //ARRAYS
@@ -1707,26 +1779,26 @@ int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int m
 
 /**
 * \brief Realiza un ordenamiento de una serie de empleados
-* \param pEmpleado Es el array de estructuras de empleados
-* \param cantidadEmpleados Es el numero de empleados que se van a ordenar
+* \param pUtnEmpleado Es el array de estructuras de empleados
+* \param cantidadUtnEmpleados Es el numero de empleados que se van a ordenar
 *
 */
-int utn_sortEmpleadosPorNombre(Empleado *pEmpleado, int cantidadEmpleados)
+int utn_sortUtnEmpleadosPorNombre(utnEmpleado *pUtnEmpleado, int cantidadUtnEmpleados)
 {
     int retorno = -1;
     int swap;
     int i;
-    if(pEmpleado != NULL && cantidadEmpleados > 0)
+    if(pUtnEmpleado != NULL && cantidadUtnEmpleados > 0)
     {
         do
         {
             swap = 0;
-            for(i=0; i<cantidadEmpleados-1; i++)
+            for(i=0; i<cantidadUtnEmpleados-1; i++)
             {
-                if(strcmp(pEmpleado[i].nombre, pEmpleado[i+1].nombre)>0)
+                if(strcmp(pUtnEmpleado[i].nombre, pUtnEmpleado[i+1].nombre)>0)
                 {
                     swap = 1;
-                    utn_swapEmpleado(&(pEmpleado[i]), &(pEmpleado[i+1]));
+                    utn_swapUtnEmpleado(&(pUtnEmpleado[i]), &(pUtnEmpleado[i+1]));
                 }
             }
         }

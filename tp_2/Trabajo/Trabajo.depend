@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1538257786 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/tp_2/Trabajo/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1538249183 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/tp_2/Trabajo/utn.h
+
+1538255234 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/tp_2/Trabajo/empleado.h
+
+1538257563 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/tp_2/Trabajo/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1538253683 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/tp_2/Trabajo/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+

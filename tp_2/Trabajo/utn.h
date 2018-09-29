@@ -1,12 +1,12 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
 
-typedef struct sEmpleado
+typedef struct
 {
     char nombre[50];
     char apellido[50];
     char DNI[20];
-}Empleado;
+}utnEmpleado;
 
 //TOMA DE DATOS PARA EL MAIN
 
@@ -27,6 +27,9 @@ int utn_getEnteroPositivo(  int *pEntero, int limite, char *mensaje,
 
 int utn_getFloat(   float *pFloat, int limite, char *mensaje,
                     char *mensajeError, int reintentos);
+
+int utn_getFloatPositivo(   float *pFloat, int limite, char *mensaje,
+                            char *mensajeError, int reintentos);
 
 int utn_getMail(char *pMail, int limite, char *mensaje,
                 char *mensajeError, int reintentos);
@@ -94,11 +97,11 @@ int utn_cantidadEnterosEnIntervalo(int listado[], int tamanio, int minimo, int m
 
 void utn_swapEnteros(int *pElementoUno, int *pElementoDos);
 
-void utn_swapEmpleado(Empleado *pEmpleadoUno, Empleado *pEmpleadoDos);
+void utn_swapUtnEmpleado(utnEmpleado *pUtnEmpleadoUno, utnEmpleado *pUtnEmpleadoDos);
 
 //ESTRUCTURAS
 
-int utn_sortEmpleadosPorNombre(Empleado *pEmpleado, int cantidadEmpleados);
+int utn_sortUtnEmpleadosPorNombre(utnEmpleado *pUtnEmpleado, int cantidadUtnEmpleados);
 
 //MATH
 

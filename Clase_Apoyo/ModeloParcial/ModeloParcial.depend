@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1538244806 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/asociado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"asociado.h"
+
+1538231706 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/utn.h
+
+1538233779 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/asociado.h
+
+1538230895 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/llamada.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"llamada.h"
+
+1538230876 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/llamada.h
+
+1538244873 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"asociado.h"
+	"llamada.h"
+
+1538243482 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Clase_Apoyo/ModeloParcial/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
