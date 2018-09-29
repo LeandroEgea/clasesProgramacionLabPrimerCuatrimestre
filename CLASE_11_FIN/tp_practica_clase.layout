@@ -26,14 +26,6 @@
 			<Collapse line="166" />
 		</Folding>
 	</File>
-	<File name="contrataciones.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10825" topLine="223" />
-		</Cursor>
-		<Folding>
-			<Collapse line="83" />
-		</Folding>
-	</File>
 	<File name="pantalla.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="959" topLine="0" />
@@ -48,17 +40,21 @@
 			<Collapse line="14" />
 			<Collapse line="27" />
 			<Collapse line="41" />
-			<Collapse line="55" />
 		</Folding>
+	</File>
+	<File name="contrataciones.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="255" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1464" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="contrataciones.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="contrataciones.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="255" topLine="0" />
+			<Cursor1 position="4014" topLine="119" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
