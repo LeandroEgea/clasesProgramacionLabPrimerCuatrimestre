@@ -14,7 +14,7 @@ int empleado_init(Empleado* array, int len);
 Empleado* empleado_getById(Empleado* array, int len,int id);
 int empleado_alta(Empleado* array, int len);
 int empleado_modificar(Empleado* array, int len, int reintentos);
-int empleado_modificarMenu(Empleado* array, int len, int reintentos);
+int empleado_modificarConMenu(Empleado* array, int len, int reintentos);
 int empleado_baja(Empleado* array, int len, int reintentos);
 int empleado_mostrar(Empleado* array, int len);
 int empleado_ingresoForzado(Empleado* array, int len, char *nombre, char *apellido, float salario, int sector);

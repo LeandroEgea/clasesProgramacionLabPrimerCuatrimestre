@@ -10,14 +10,16 @@ typedef struct
 //TOMA DE DATOS PARA EL MAIN
 int utn_getAlfabetico(  char* pAlfabetico, int limite, char* mensaje,
                         char* mensajeError, int reintentos);
+int utn_getNombre(  char *pNombre, int limite, char *mensaje,
+                    char *mensajeError, int reintentos);
 int utn_getAlfanumerico(char *pAlfanumerico, int limite, char *mensaje,
                         char *mensajeError, int reintentos);
 int utn_getTexto(   char *pTexto, int limite, char *mensaje,
                     char *mensajeError, int reintentos);
 int utn_getEntero(  int *pEntero, int limite, char *mensaje,
                     char *mensajeError, int reintentos);
-int utn_getEnteroPositivo(  int *pEntero, int limite, char *mensaje,
-                            char *mensajeError, int reintentos);
+int utn_getEnteroSoloNumeros(   int *pEntero, int limite, char *mensaje,
+                                char *mensajeError, int reintentos);
 int utn_getFloat(   float *pFloat, int limite, char *mensaje,
                     char *mensajeError, int reintentos);
 int utn_getFloatPositivo(   float *pFloat, int limite, char *mensaje,

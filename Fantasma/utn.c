@@ -65,6 +65,40 @@ static int isValidAlfabetico(char *pBuffer, int limite)
     return retorno;
 }
 /**
+* \brief    Evalua si es un nombre, solo puede tener un espacio y cada nombre
+*           debe empezar por mayuscula y el resto minusculas (Jose)(Jose Maria)(Lopez)(Lopez Gomez)
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidNombre(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int cantidadEspacios = 0;
+    int i;
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
+        pBuffer[0]>='A' && pBuffer[0]<='Z')
+
+    {
+        retorno = 1;
+        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
+        {
+            if(pBuffer[i]==' ' && cantidadEspacios == 0)
+            {
+                cantidadEspacios++;
+            }
+            else if(!(pBuffer[i] >= 'a' && pBuffer[i] <= 'z' && pBuffer[i-1] != ' ') &&
+                    !(pBuffer[i] >= 'A' && pBuffer[i] <= 'Z' && pBuffer[i-1] == ' '))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
 * \brief Evalua si se trata de una cadena alfanumerica
 * \param pBuffer Es la cadena que evaluamos
 * \param limite Es el tamano maximo del string
@@ -161,7 +195,7 @@ static int isValidEnteroSoloNumeros(char *pBuffer, int limite)
     if (pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
     {
         retorno = 1;
-        for(i=1; i < limite && pBuffer[i] != '\0'; i++)
+        for(i=0; i < limite && pBuffer[i] != '\0'; i++)
         {
             if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
             {
@@ -648,9 +682,48 @@ int utn_getAlfabetico(  char *pAlfabetico, int limite, char *mensaje,
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(bufferAlfabetico, limite) == 0 &&
-                    isValidAlfabetico(bufferAlfabetico, limite))
+                isValidAlfabetico(bufferAlfabetico, limite))
             {
                 strncpy(pAlfabetico, bufferAlfabetico, limite);
+                retorno = 0;
+                break;
+            }
+            else
+            {
+                printf("\n%s", mensajeError);
+            }
+        }
+        while(reintentos>=0);
+    }
+    return retorno;
+}
+/**
+* \brief    Toma una cadena y evalua si es un nombre, solo puede tener un espacio y cada nombre
+*           debe empezar por mayuscula y el resto minusculas (Jose)(Jose Maria)(Lopez)(Lopez Gomez)
+* \param pNombre Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \param reintentos Veces que el usuario podra volver a introducir el dato
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_getNombre(  char *pNombre, int limite, char *mensaje,
+                    char *mensajeError, int reintentos)
+{
+    int retorno=-1;
+    char buffer[4096];
+    if( pNombre != NULL && limite > 0 && mensaje != NULL &&
+        mensajeError != NULL && reintentos>=0)
+    {
+        do
+        {
+            reintentos--;
+            printf("\n%s", mensaje);
+            if( getString(buffer, limite) == 0 &&
+                isValidNombre(buffer, limite))
+            {
+                strncpy(pNombre, buffer, limite);
                 retorno = 0;
                 break;
             }
@@ -686,7 +759,7 @@ int utn_getAlfanumerico(char *pAlfanumerico, int limite, char *mensaje,
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidAlfanumerico(buffer, limite))
+                isValidAlfanumerico(buffer, limite))
             {
                 strncpy(pAlfanumerico, buffer, limite);
                 retorno = 0;
@@ -717,14 +790,14 @@ int utn_getTexto(   char *pTexto, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pTexto != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidTexto(buffer, limite))
+                isValidTexto(buffer, limite))
             {
                 strncpy(pTexto, buffer, limite);
                 retorno = 0;
@@ -778,7 +851,7 @@ int utn_getEntero(  int *pEntero, int limite, char *mensaje,
     return retorno;
 }
 /**
-* \brief Toma una cadena y evalua si es un entero positivo
+* \brief Toma una cadena y evalua si es un entero sin signo
 * \param pEntero Recibe el numero ingresado en caso de exito
 * \param limite Es el numero de cifras
 * \param mensaje Es el mensaje que se muestra al usuario antes de introducir datos
@@ -787,8 +860,8 @@ int utn_getEntero(  int *pEntero, int limite, char *mensaje,
 * \return En caso de exito retorna 0, si no -1
 *
 */
-int utn_getEnteroPositivo(  int *pEntero, int limite, char *mensaje,
-                            char *mensajeError, int reintentos)
+int utn_getEnteroSoloNumeros(   int *pEntero, int limite, char *mensaje,
+                                char *mensajeError, int reintentos)
 {
     int retorno=-1;
     char bufferEntero[4096];
@@ -831,7 +904,7 @@ int utn_getFloat(   float *pFloat, int limite, char *mensaje,
     int retorno=-1;
     char bufferFloat[4096];
     if( pFloat != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -869,7 +942,7 @@ int utn_getFloatPositivo(   float *pFloat, int limite, char *mensaje,
     int retorno=-1;
     char bufferFloat[4096];
     if( pFloat != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -907,14 +980,14 @@ int utn_getMail(char *pMail, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pMail != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidMail(buffer, limite))
+                isValidMail(buffer, limite))
             {
                 strncpy(pMail, buffer, limite);
                 retorno = 0;
@@ -945,14 +1018,14 @@ int utn_getTelefonoFijo(char *pTelefono, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pTelefono != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidTelefonoFijo(buffer, limite))
+                isValidTelefonoFijo(buffer, limite))
             {
                 strncpy(pTelefono, buffer, limite);
                 retorno = 0;
@@ -988,7 +1061,7 @@ int utn_getFecha(   char *pFecha, int limite, char *mensaje,
     int mes;
     int anio;
     if( pFecha != NULL && limite >= 11 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
@@ -1063,14 +1136,14 @@ int utn_getWeb( char *pWeb, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pWeb != NULL && limite > 7 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidWeb(buffer, limite))
+                isValidWeb(buffer, limite))
             {
                 strncpy(pWeb, buffer, limite);
                 retorno = 0;
@@ -1101,15 +1174,15 @@ int utn_getTarjeta( char *pTarjeta, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pTarjeta != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidEnteroSoloNumeros(buffer, limite) &&
-                    strlen(buffer) == 16)
+                isValidEnteroSoloNumeros(buffer, limite) &&
+                strlen(buffer) == 16)
             {
                 strncpy(pTarjeta, buffer, limite);
                 retorno = 0;
@@ -1141,14 +1214,14 @@ int utn_getCelularArgentino(char *pCelular, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pCelular != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidCelularArgentino(buffer, limite))
+                isValidCelularArgentino(buffer, limite))
             {
                 strncpy(pCelular, buffer, limite);
                 retorno = 0;
@@ -1179,14 +1252,14 @@ int utn_getArchivo( char *pArchivo, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pArchivo != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidArchivo(buffer, limite))
+                isValidArchivo(buffer, limite))
             {
                 strncpy(pArchivo, buffer, limite);
                 retorno = 0;
@@ -1225,7 +1298,7 @@ int utn_getArchivoPorTipo(  char *pArchivo, int limite, char *pExtension,
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidArchivoPorTipo(buffer, limite, pExtension))
+                isValidArchivoPorTipo(buffer, limite, pExtension))
             {
                 strncpy(pArchivo, buffer, limite);
                 retorno = 0;
@@ -1256,14 +1329,14 @@ int utn_getCodigoPostal(char *pCodigoPostal, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pCodigoPostal != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidCodigoPostal(buffer, limite))
+                isValidCodigoPostal(buffer, limite))
             {
                 strncpy(pCodigoPostal, buffer, limite);
                 retorno = 0;
@@ -1301,7 +1374,7 @@ int utn_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidCuilOrCuit(buffer, limite))
+                isValidCuilOrCuit(buffer, limite))
             {
                 strncpy(pDocumento, buffer, limite);
                 retorno = 0;
@@ -1332,14 +1405,14 @@ int utn_getDni( char *pDocumento, int limite, char *mensaje,
     int retorno=-1;
     char buffer[4096];
     if( pDocumento != NULL && limite > 0 && mensaje != NULL &&
-            mensajeError != NULL && reintentos>=0)
+        mensajeError != NULL && reintentos>=0)
     {
         do
         {
             reintentos--;
             printf("\n%s", mensaje);
             if( getString(buffer, limite) == 0 &&
-                    isValidDni(buffer, limite))
+                isValidDni(buffer, limite))
             {
                 strncpy(pDocumento, buffer, limite);
                 retorno = 0;
