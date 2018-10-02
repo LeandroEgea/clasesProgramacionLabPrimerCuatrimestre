@@ -10,12 +10,12 @@
 
 1538346447 /home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Fantasma/empleado.h
 
-1538348907 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Fantasma/main.c
+1538349704 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Fantasma/main.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
-	<ctype.h>
 	"utn.h"
+	"empleado.h"
 
 1538348907 source:/home/leandroegea/clasesProgramacionLabPrimerCuatrimestre/Fantasma/utn.c
 	<stdio_ext.h>
