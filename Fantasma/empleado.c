@@ -415,6 +415,32 @@ int empleado_mostrar(Empleado* array, int len)
     return retorno;
 }
 /**
+* \brief    Se utiliza esta funcion para mostrar todos los datos de los
+*           empleados del array que tengan el nombre introducido
+* \param array Es el array que se recorre
+* \param len Es el limite de empleados que puede guardar el array
+* \param nombre Es el nombre que se va a comparar
+* \return El retorno es 0 si se mostraron los datos, si no el retorno es -1.
+*/
+int empleado_mostrarByNombre(Empleado* array, int len, char* nombre)
+{
+    int retorno = -1;
+    int i;
+    if(array != NULL && len > 0)
+    {
+        for(i=0;i<len;i++)
+        {
+            if(!array[i].isEmpty && strcmp(nombre, array[i].nombre) == 0)
+            {
+                printf("\nNombre: %s\nApellido: %s\nSalario: %.2f\nSector: %d\nID: %d\n\n",
+                array[i].nombre, array[i].apellido, array[i].salario, array[i].sector, array[i].idEmpleado);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+/**
 * \brief    Se utiliza esta funcion para cargar los datos de un
 *           empleado del array (nombre, apellidos, salario, sector)
 *           el id se genera de manera automatica y se pone el isEmpty en 0

@@ -20,11 +20,12 @@ int main()
     empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "David", "Lopez", 6000.2, 4);
     empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Rafael", "Lopez", 300.2, 1);
 
+    //empleado_mostrarByNombre(empleados, CANTIDAD_EMPLEADOS, "Rafaela");
     //auxiliar = empleado_getByNombre(empleados, CANTIDAD_EMPLEADOS, "Martina");
     //empleado_mostrar(auxiliar,1);
     while(salidaDelMenu == 0)
     {
-        system("clear");
+        //system("clear");
         printf("1. Alta empleado\n"
                "2. Modificar empleado\n"
                "3. Baja empleado\n"
