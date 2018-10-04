@@ -205,3 +205,55 @@
 	"pantalla.h"
 	"utn.h"
 
+1538620109 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/Contratacion.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"Contratacion.h"
+	"utn.h"
+	"pantalla.h"
+
+1538620076 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/Contratacion.h
+	"pantalla.h"
+
+1538590013 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/pantalla.h
+
+1538590013 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/utn.h
+
+1538620059 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"pantalla.h"
+	"utn.h"
+	"Contratacion.h"
+	"informar.h"
+
+1538590013 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/informar.h
+
+1538590013 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/pantalla.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"pantalla.h"
+	"utn.h"
+
+1538590013 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+
+1538595626 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/CLASE_13_FIN/informar.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"Contratacion.h"
+	"utn.h"
+	"pantalla.h"
+

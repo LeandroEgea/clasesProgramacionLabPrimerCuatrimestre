@@ -234,11 +234,61 @@ int cont_ordenarCuit(Contratacion* array,int limite, int orden)
 }
 
 
+int contratacion_crearArrayCuit(Contratacion* arrayContratacion, int lenContratacion, char arrayCuits[][20], int lenArrayCuits)
+{
+    int retorno = -1;
+    int i;
+    int indiceLibre = 0;
+    if(arrayContratacion!= NULL && lenContratacion>0 && arrayCuits != NULL && lenArrayCuits > 0)
+    {
+        for(i=0;i<lenArrayCuits;i++)
+        {
+            strncpy(arrayCuits[i], "isEmpty", 20);
+        }
+        for(i=0;i<lenContratacion;i++)
+        {
+            if( arrayContratacion[i].isEmpty == 0 &&
+                !contratacion_isCuitCargado(arrayCuits, lenArrayCuits, arrayContratacion[i].cuit))
+            {
+                strncpy(arrayCuits[indiceLibre], arrayContratacion[i].cuit,20);
+                indiceLibre++;
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+int contratacion_isCuitCargado(char arrayCuits[][20],int lenArrayCuits,char* cuit)
+{
+    int retorno = 0;
+    int i;
+    if(arrayCuits != NULL && lenArrayCuits > 0)
+    {
+        for(i=0;i<lenArrayCuits;i++)
+        {
+            if(strcmp(arrayCuits[i], cuit) == 0)
+            {
+                retorno = 1;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
 
-
-
-
-
-
-
-
+int contratacion_mostrarCuits(char arrayCuits[][20], int lenArrayCuits)
+{
+    int retorno = -1;
+    int i;
+    int indiceSiguiente = 0;
+    for(i=0;i<lenArrayCuits;i++)
+    {
+        if(strcmp(arrayCuits[i], "isEmpty") != 0)
+        {
+            printf("%s\n", arrayCuits[indiceSiguiente]);
+            indiceSiguiente++;
+        }
+        retorno = 0;
+    }
+    return retorno;
+}

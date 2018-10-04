@@ -24,3 +24,28 @@
 	<ctype.h>
 	"utn.h"
 
+1538594063 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Fantasma/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1538590013 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Fantasma/utn.h
+
+1538594638 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Fantasma/empleado.h
+
+1538590013 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Fantasma/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1538593519 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Fantasma/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+

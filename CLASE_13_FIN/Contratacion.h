@@ -28,8 +28,9 @@ int cont_ordenarCuit(Contratacion* array,int limite, int orden);
 //int buscarLugarLibre(Pantalla* array,int limite);
 //int proximoId();
 //int pantalla_buscarPorId(Pantalla* array,int limite, int id);
-
-
+int contratacion_isCuitCargado(char arrayCuit[][20],int lenArrayCuit,char* cuit);
+int contratacion_mostrarCuits(char arrayCuits[][20], int lenArrayCuits);
+int contratacion_crearArrayCuit(Contratacion* arrayContratacion, int lenContratacion, char arrayCuit[][20], int lenArrayCuit);
 int cont_altaForzada(Contratacion* arrayC,int limite,Pantalla* pantallas, int lenPantallas,int idPantalla,char* archivo,char* cuit,int dias);
 
 #endif // PANTALLA_H_INCLUDED

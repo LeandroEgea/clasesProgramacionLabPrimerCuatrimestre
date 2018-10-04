@@ -105,6 +105,62 @@ Empleado* empleado_getById(Empleado* array, int len, int id)
     return retorno;
 }
 /**
+* \brief    Se utiliza esta funcion para encontrar un empleado a través de un id,
+*           recorriendo el array y comparando los id (donde el isEmpty es 0)
+* \param array Es el array que se recorre
+* \param len Es el limite de empleados que puede guardar el array
+* \param id Es el id con que se compara cada id del array
+* \return   retorna la direccion de la struct del empleado donde se encontro el id,
+*           si no el retorno es NULL.
+*/
+Empleado* empleado_getByNombre(Empleado* array, int len, char* nombreEmpleado)
+{
+
+    Empleado* retorno = NULL;
+    Empleado* auxiliarEmpleado = NULL;
+    int i;
+    int id;
+    int indicePrimerEncontrado;
+    int cantidadEncontrados = 0;
+    if(array != NULL && len > 0)
+    {
+        for(i=0;i<len;i++)
+        {
+            if( cantidadEncontrados == 0 && !array[i].isEmpty &&
+                strcmp(array[i].nombre,nombreEmpleado) == 0)
+            {
+                cantidadEncontrados++;
+                indicePrimerEncontrado = i;
+            }
+            else if(cantidadEncontrados == 1 && !array[i].isEmpty &&
+                    strcmp(array[i].nombre,nombreEmpleado) == 0)
+            {
+                cantidadEncontrados++;
+                printf("Seleccione por Id\n");
+                empleado_mostrar(&array[indicePrimerEncontrado],1);
+                empleado_mostrar(&array[i],1);
+            }
+            else if(!array[i].isEmpty && strcmp(array[i].nombre,nombreEmpleado) == 0)
+            {
+                empleado_mostrar(&array[i],1);
+            }
+        }
+        if(cantidadEncontrados==1)
+        {
+            retorno = &array[indicePrimerEncontrado];
+        }
+        else if(cantidadEncontrados > 1 && !utn_getEnteroSoloNumeros(&id,5,"","",0))
+        {
+            auxiliarEmpleado = empleado_getById(array, len, id);
+            if(strcmp(auxiliarEmpleado->nombre, nombreEmpleado) == 0)
+            {
+                retorno = auxiliarEmpleado;
+            }
+        }
+    }
+    return retorno;
+}
+/**
 * \brief    Se utiliza esta funcion para dar de alta un empleado generando un id
 *           de manera automatica y el usuario introduce el resto de datos,
 *           si se realiza todo correctamente se guardan los datos y se coloca el isEmpty en 0
@@ -459,6 +515,7 @@ int empleado_informacionEmpleados(Empleado *array, int len)
         {
             if(array[i].isEmpty == 0 && array[i].salario > promedioSalarios)
             {
+                //empleado_mostrar(&(array[i]), 1);
                 cantidadSalariosSobrePromedio++;
             }
         }
@@ -469,3 +526,192 @@ int empleado_informacionEmpleados(Empleado *array, int len)
     }
     return retorno;
 }
+
+/**
+* \brief Calcula el promedio de los salarios de los empleados
+* \param array Es el array que se recorre
+* \param len Es el limite de empleados que puede guardar el array
+* \return El retorno es 0 si se mostro la informacion, si no el retorno es -1.
+*/
+int empleado_promedioSalarios(Empleado *array, int len, float *promedioSalarios)
+{
+    int retorno=-1;
+    int i;
+    float totalSalarios = 0;
+    int totalEmpleados = 0;
+    if(array != NULL && len > 0)
+    {
+        for(i=0; i < len; i++)
+        {
+            if(array[i].isEmpty == 0)
+            {
+                totalSalarios += array[i].salario;
+                totalEmpleados++;
+            }
+        }
+        *promedioSalarios = totalSalarios/totalEmpleados;
+        retorno = 0;
+    }
+    return retorno;
+}
+
+
+
+
+
+
+
+
+
+//Falta DoxyGen
+
+/*
+int informar_pantallaMayorMenorDiez(Pantalla *array, int len, int mayorMenor)
+{
+    int retorno=-1;
+    int i;
+    int cantidadPantallas = 0;
+    if(array != NULL && len > 0)
+    {
+        for(i=0; i < len; i++)
+        {
+            if(mayorMenor == 0 && array[i].isEmpty == 0 && array[i].precio > 10)
+            {
+                pantalla_mostrar(&(array[i]), 1);
+                cantidadPantallas++;
+            }
+            else if(mayorMenor == 1 && array[i].isEmpty == 0 && array[i].precio <= 10)
+            {
+                pantalla_mostrar(&(array[i]), 1);
+                cantidadPantallas++;
+            }
+        }
+        printf("El total de pantallas es: %d\n", cantidadPantallas);
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_pantallaSuperaPromedio(Pantalla *array, int len, int MayorMenor)
+{
+    int retorno=-1;
+    int i;
+    float promedioPrecios;
+    int cantidadPantallasSobrePromedio = 0;
+    if(array != NULL && len > 0 && !pantalla_promedioPrecio(&promedioPrecios, array, len))
+    {
+        if(MayorMenor == 0)
+        {
+            for(i=0; i < len; i++)
+            {
+                if(array[i].isEmpty == 0 && array[i].precio > promedioPrecios)
+                {
+                    pantalla_mostrar(&(array[i]), 1);
+                    cantidadPantallasSobrePromedio++;
+                }
+            }
+            printf("El total de las pantallas que superan el promedio(%.2f) es: %d\n", promedioPrecios, cantidadPantallasSobrePromedio);
+        }
+        else if(MayorMenor == 1)
+        {
+            for(i=0; i < len; i++)
+            {
+                if(array[i].isEmpty == 0 && array[i].precio < promedioPrecios)
+                {
+                    pantalla_mostrar(&(array[i]), 1);
+                    cantidadPantallasSobrePromedio++;
+                }
+            }
+            printf("El total de las pantallas que no superan el promedio(%.2f) es: %d\n", promedioPrecios, cantidadPantallasSobrePromedio);
+        }
+        retorno = 0;
+    }
+    return retorno;
+}/*
+/*
+int informar_contratacionesMenorDiezDias(   Contratacion *arrayContratacion, int lenContratacion,
+                                            Pantalla *arrayPantalla, int lenPantalla)
+{
+    int retorno=-1;
+    int i;
+    int idPantallaAuxiliar;
+    float precioTotal;
+    Pantalla* pantallaAuxiliar;
+    if(arrayContratacion != NULL && lenContratacion > 0 && arrayPantalla != NULL && lenPantalla > 0)
+    {
+        for(i=0; i < lenContratacion; i++)
+        {
+            if(arrayContratacion[i].isEmpty == 0 && arrayContratacion[i].dias <= 10)
+            {
+                idPantallaAuxiliar = arrayContratacion[i].idPantalla;
+                pantallaAuxiliar = pantalla_getById(arrayPantalla, lenPantalla, idPantallaAuxiliar);
+                precioTotal = pantallaAuxiliar->precio * arrayContratacion[i].dias;
+                printf("%s   %.2f   %d   %.2f\n",pantallaAuxiliar->nombre,pantallaAuxiliar->precio,arrayContratacion[i].dias, precioTotal);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+*/
+/*
+int contratacion_crearArrayCuit(Contratacion* arrayContratacion, int lenContratacion, char arrayCuits[][20], int lenArrayCuits)
+{
+    int retorno = -1;
+    int i;
+    int indiceLibre = 0;
+    if(arrayContratacion!= NULL && lenContratacion>0 && arrayCuits != NULL && lenArrayCuits > 0)
+    {
+        for(i=0;i<lenArrayCuits;i++)
+        {
+            strncpy(arrayCuits[i], "isEmpty", 20);
+        }
+        for(i=0;i<lenContratacion;i++)
+        {
+            if( arrayContratacion[i].isEmpty == 0 &&
+                !contratacion_isCuitCargado(arrayCuits, lenArrayCuits, arrayContratacion[i].cuit))
+            {
+                strncpy(arrayCuits[indiceLibre], arrayContratacion[i].cuit,20);
+                indiceLibre++;
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}*/
+/*
+int contratacion_isCuitCargado(char arrayCuits[][20],int lenArrayCuits,char* cuit)
+{
+    int retorno = 0;
+    int i;
+    if(arrayCuits != NULL && lenArrayCuits > 0)
+    {
+        for(i=0;i<lenArrayCuits;i++)
+        {
+            if(strcmp(arrayCuits[i], cuit) == 0)
+            {
+                retorno = 1;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+*/
+/*
+int contratacion_mostrarCuits(char arrayCuits[][20], int lenArrayCuits)
+{
+    int retorno = -1;
+    int i;
+    int indiceSiguiente = 0;
+    for(i=0;i<lenArrayCuits;i++)
+    {
+        if(strcmp(arrayCuits[i], "isEmpty") != 0)
+        {
+            printf("%s\n", arrayCuits[indiceSiguiente]);
+            indiceSiguiente++;
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+*/

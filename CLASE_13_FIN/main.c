@@ -9,6 +9,7 @@
 
 #define QTY 10
 #define LEN_CONT    1000
+#define CANTIDAD_CUIT 1000
 
 /*
 
@@ -50,6 +51,7 @@ int main()
 {
     Pantalla array[QTY];
     Contratacion contrataciones[LEN_CONT];
+    char arrayCuits[CANTIDAD_CUIT][20];
     int menu;
     int auxiliarId;
     pantalla_init(array,QTY);
@@ -62,7 +64,7 @@ int main()
     pantalla_altaForzada(array,QTY,"Berazategui","Mitre 150",20,1);
 
     cont_altaForzada(contrataciones,LEN_CONT,array,QTY,0,"video.avi","20911911915",7);
-    cont_altaForzada(contrataciones,LEN_CONT,array,QTY,0,"video1.avi","20911911915",6);
+    cont_altaForzada(contrataciones,LEN_CONT,array,QTY,0,"video1.avi","40911911915",6);
     cont_altaForzada(contrataciones,LEN_CONT,array,QTY,0,"video2.avi","30911911915",300);
     cont_altaForzada(contrataciones,LEN_CONT,array,QTY,2,"video3.avi","30911911915",400);
     cont_altaForzada(contrataciones,LEN_CONT,array,QTY,2,"video4.avi","40911911915",5);
@@ -74,7 +76,13 @@ int main()
     //informar_sortPantallaPorPrecioNombre(array, QTY);
     //informar_pantallaMayorMenorDiez(array, QTY, 0);
     //informar_pantallaSuperaPromedio(array, QTY, 0);
-    informar_contratacionesMenorDiezDias(contrataciones, LEN_CONT, array, QTY);
+    //informar_contratacionesMenorDiezDias(contrataciones, LEN_CONT, array, QTY);
+
+    if(!contratacion_crearArrayCuit(contrataciones, QTY, arrayCuits, CANTIDAD_CUIT))
+    {
+        contratacion_mostrarCuits(arrayCuits, QTY);
+    }
+
     do
     {
         getValidInt("\n\n1.Alta\n2.Baja\n3.Modificar\n4.Mostrar\n5.Ordenar\n6.Mostrar Debug\n7.Contratar\n9.Salir\n","\nNo valida\n",&menu,1,9,1);

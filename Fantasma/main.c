@@ -9,15 +9,19 @@ int main()
     int elegirOpcion;
     int salidaDelMenu = 0;
     int cantidadEmpleadosActivos = 0;
+    //Empleado* auxiliar;
     Empleado empleados[CANTIDAD_EMPLEADOS];
     empleado_init(empleados, CANTIDAD_EMPLEADOS);
-    //cantidadEmpleadosActivos = 6;
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Daniel", "Perez", 43000.25, 4);
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Martina", "Gomez", 50000, 22);
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Rolando", "Mora", 100.2, 2);
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Marcos", "Lopez", 600, 7);
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "David", "Lopez", 6000.2, 4);
-    //empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Rafael", "Lopez", 300.2, 1);
+    cantidadEmpleadosActivos = 6;
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Daniel", "Perez", 43000.25, 4);
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Martina", "Gomez", 50000, 22);
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Daniel", "Mora", 100.2, 2);
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Daniel", "Lopez", 600, 7);
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "David", "Lopez", 6000.2, 4);
+    empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Rafael", "Lopez", 300.2, 1);
+
+    //auxiliar = empleado_getByNombre(empleados, CANTIDAD_EMPLEADOS, "Martina");
+    //empleado_mostrar(auxiliar,1);
     while(salidaDelMenu == 0)
     {
         system("clear");
@@ -27,7 +31,7 @@ int main()
                "4. Informacion empleado\n"
                "5. Salir\n");
         elegirOpcion = 0;
-        utn_getEntero(&elegirOpcion, 5, "Seleccione...\n", "", 0);
+        utn_getEnteroSoloNumeros(&elegirOpcion, 5, "Seleccione...\n", "", 0);
         switch(elegirOpcion)
         {
             case 1:

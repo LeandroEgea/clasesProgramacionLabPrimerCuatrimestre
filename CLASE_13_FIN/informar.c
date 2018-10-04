@@ -112,6 +112,7 @@ int informar_contratacionesMenorDiezDias(   Contratacion *arrayContratacion, int
     int retorno=-1;
     int i;
     int idPantallaAuxiliar;
+    float precioTotal;
     Pantalla* pantallaAuxiliar;
     if(arrayContratacion != NULL && lenContratacion > 0 && arrayPantalla != NULL && lenPantalla > 0)
     {
@@ -121,7 +122,8 @@ int informar_contratacionesMenorDiezDias(   Contratacion *arrayContratacion, int
             {
                 idPantallaAuxiliar = arrayContratacion[i].idPantalla;
                 pantallaAuxiliar = pantalla_getById(arrayPantalla, lenPantalla, idPantallaAuxiliar);
-                printf("",pantallaAuxiliar.nombre,pantallaAuxiliar.precio,arrayContratacion[i].dias,arrayContratacion[i].)
+                precioTotal = pantallaAuxiliar->precio * arrayContratacion[i].dias;
+                printf("%s   %.2f   %d   %.2f\n",pantallaAuxiliar->nombre,pantallaAuxiliar->precio,arrayContratacion[i].dias, precioTotal);
             }
         }
         retorno = 0;
