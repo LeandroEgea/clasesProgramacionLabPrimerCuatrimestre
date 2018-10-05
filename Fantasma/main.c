@@ -20,7 +20,7 @@ int main()
     empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "David", "Lopez", 6000.2, 4);
     empleado_ingresoForzado(empleados, CANTIDAD_EMPLEADOS, "Rafael", "Lopez", 300.2, 1);
 
-    //empleado_mostrarByNombre(empleados, CANTIDAD_EMPLEADOS, "Rafaela");
+    //empleado_mostrarByNombre(empleados, CANTIDAD_EMPLEADOS, "Daniel");
     //auxiliar = empleado_getByNombre(empleados, CANTIDAD_EMPLEADOS, "Martina");
     //empleado_mostrar(auxiliar,1);
     while(salidaDelMenu == 0)

@@ -49,3 +49,28 @@
 	"utn.h"
 	"empleado.h"
 
+1538687538 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Fantasma/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1538687538 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Fantasma/utn.h
+
+1538687538 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Fantasma/empleado.h
+
+1538687955 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Fantasma/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1538687538 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Fantasma/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
