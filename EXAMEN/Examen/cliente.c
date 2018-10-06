@@ -4,6 +4,7 @@
 #include "utn.h"
 #include "cliente.h"
 #include "venta.h"
+#include "informes.h"
 /**
 * \brief    Se utiliza esta funcion para obtener un nuevo id
 *           declarando una variable static para el id y suma 1 al anterior
@@ -275,22 +276,26 @@ int cliente_mostrarVentas(Cliente* array, int len, void* arrayVentasVoid, int le
 {
     int retorno = -1;
     Venta* arrayVentas = arrayVentasVoid;
-    Venta* ventaMostrar;
     int i;
     int j;
+    int contadorDeVentas = 0;
     if(array != NULL && len > 0 && arrayVentas != NULL && lenVentas > 0)
     {
         for(i=0;i<len;i++)
         {
             if(!array[i].isEmpty)
             {
-                printf("\nNombre: %s\nApellido: %s\nCuit: %s\nID: %d\n\n",
-                array[i].nombre, array[i].apellido, array[i].cuit, array[i].idCliente);
+                contadorDeVentas = 0;
                 for(j=0;j<lenVentas; j++)
                 {
-                    ventaMostrar = venta_getByIdCliente(arrayVentas, lenVentas,array[i].idCliente);
-                    venta_mostrar(ventaMostrar, 1);
+                    if(venta_getByIdCliente(&arrayVentas[j], 1, array[i].idCliente) != NULL &&
+                        arrayVentas[j].estado == A_COBRAR)
+                    {
+                        contadorDeVentas++;
+                    }
                 }
+                printf("\nNombre: %s\nApellido: %s\nCuit: %s\nID: %d\nCantidadDeVentas: %d\n\n",
+                array[i].nombre, array[i].apellido, array[i].cuit, array[i].idCliente, contadorDeVentas);
             }
         retorno = 0;
         }

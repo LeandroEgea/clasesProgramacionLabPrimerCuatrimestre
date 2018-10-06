@@ -4,6 +4,7 @@
 #include "utn.h"
 #include "cliente.h"
 #include "venta.h"
+#include "informes.h"
 /**
 * \brief    Se utiliza esta funcion para obtener un nuevo id
 *           declarando una variable static para el id y suma 1 al anterior
@@ -69,7 +70,7 @@ int venta_init(Venta* array, int len)
 * \return   retorna la direccion de la struct del venta donde se encontro el id,
 *           si no el retorno es NULL.
 */
-Venta* venta_getByIdCliente(Venta* array, int len, int id)
+Venta* venta_getByIdCliente(Venta* array, int len, int idCliente)
 {
     Venta* retorno = NULL;
     int i;
@@ -77,7 +78,7 @@ Venta* venta_getByIdCliente(Venta* array, int len, int id)
     {
         for(i=0;i<len;i++)
         {
-            if(!array[i].isEmpty && array[i].idVenta == id)
+            if(!array[i].isEmpty && array[i].idCliente == idCliente)
             {
                 retorno = &array[i];
                 break;
@@ -129,6 +130,7 @@ int venta_alta(Venta* arrayVentas, int lenVentas, void* arrayClientesVoid, int l
     int cantidadAfiches;
     char archivoImagen[51];
     int zona;
+    cliente_mostrar(arrayClientes, lenClientes);
     indice = getLugarLibreVenta(arrayVentas,lenVentas);
     if( arrayVentas != NULL && lenVentas > 0 &&
         arrayClientes != NULL && lenClientes > 0 && indice >= 0 &&
@@ -205,10 +207,10 @@ int venta_modificar(Venta* array, int len, int reintentos)
 * \param reintentos Veces que el usuario podra volver a introducir el id
 * \return El retorno es 0 si se realizo de manera correcta, si no el retorno es -1.
 */
-int venta_baja(Venta* array, int len, void *arrayClientesVoid,int lenClientes,int reintentos)
+int venta_cobrar(Venta* array, int len, void *arrayClientesVoid,int lenClientes,int reintentos)
 {
     int retorno = -1;
-    Venta *ventaBaja;
+    Venta *ventaCobrar;
     Cliente *arrayClientes = arrayClientesVoid;
     Cliente *clienteMostrar = NULL;
     char confirmarBaja[10];
@@ -222,20 +224,27 @@ int venta_baja(Venta* array, int len, void *arrayClientesVoid,int lenClientes,in
             if( !utn_getEntero(&id, len, "Introduzca el Id que cobrar\n", "", 0) &&
                 venta_getById(array, len, id) != NULL)
             {
-                ventaBaja = venta_getById(array, len, id);
-                printf("Se cobrara la venta de este cliente\n");
-                clienteMostrar = cliente_getById(arrayClientes, lenClientes, ventaBaja->idCliente);
-                if(clienteMostrar != NULL)
+                ventaCobrar = venta_getById(array, len, id);
+                if(ventaCobrar->estado == A_COBRAR)
                 {
-                    cliente_mostrar(clienteMostrar, 1);
+                    printf("Se cobrara la venta de este cliente\n");
+                    clienteMostrar = cliente_getById(arrayClientes, lenClientes, ventaCobrar->idCliente);
+                    if(clienteMostrar != NULL)
+                    {
+                        cliente_mostrar(clienteMostrar, 1);
+                    }
+                    if( !utn_getTexto(confirmarBaja, 10, "Pulse 1 para confirmar\n", "Error\n", 2) &&
+                        strcmp(confirmarBaja, "1") == 0)
+                    {
+                        ventaCobrar->estado = COBRADA;
+                        retorno = 0;
+                    }
+                    break;
                 }
-                if( !utn_getTexto(confirmarBaja, 10, "Pulse 1 para confirmar\n", "Error\n", 2) &&
-                    strcmp(confirmarBaja, "1") == 0)
+                else
                 {
-                    ventaBaja->estado = COBRADA;
-                    retorno = 0;
+                    printf("La venta ya esta cobrada\n");
                 }
-                break;
             }
             else
             {
@@ -303,7 +312,7 @@ int venta_mostrar(Venta* array, int len)
                 {
                     printf("Estado: A cobrar\n\n");
                 }
-                else if(array[i].zona == COBRADA)
+                else if(array[i].estado == COBRADA)
                 {
                     printf("Estado: Cobrado\n\n");
                 }

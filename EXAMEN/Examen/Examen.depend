@@ -38,3 +38,53 @@
 	"cliente.h"
 	"venta.h"
 
+1538855307 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/informes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"informes.h"
+	"cliente.h"
+	"venta.h"
+
+1538853965 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/main.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"venta.h"
+	"cliente.h"
+	"informes.h"
+
+1538841900 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/utn.h
+
+1538850554 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/venta.h
+
+1538841900 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/cliente.h
+
+1538841900 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1538850554 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/venta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"cliente.h"
+	"venta.h"
+
+1538854491 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"cliente.h"
+	"venta.h"
+	"informes.h"
+
+1538855307 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EXAMEN/Examen/informes.h
+
