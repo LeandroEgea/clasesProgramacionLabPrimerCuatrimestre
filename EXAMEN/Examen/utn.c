@@ -1397,6 +1397,46 @@ int utn_getCuilOrCuit(  char *pDocumento, int limite, char *mensaje,
     return retorno;
 }
 /**
+* \brief Toma un Cuit y asegura que el digito verificador sea correcto
+* \param pDocumento Recibe el cuit ya con el formato correcto(xx-xxxxxxxx-x)
+* \param mensajeError Es el mensaje que se muestra en caso de error
+* \return En caso de exito retorna 0, si no -1
+*
+*/
+int utn_coincideDigitoVerificador(char *pDocumento, char *mensajeError)
+{
+    int retorno=-1;
+    int suma;
+    int digitoVerificador;
+    int ultimoDigitoCuit;
+    if(pDocumento != NULL && mensajeError != NULL)
+    {
+        suma =  (pDocumento[0]-48)*5 + (pDocumento[1]-48)*4 + (pDocumento[3]-48)*3 +
+                (pDocumento[4]-48)*2 + (pDocumento[5]-48)*7 + (pDocumento[6]-48)*6 +
+                (pDocumento[7]-48)*5 + (pDocumento[8]-48)*4 + (pDocumento[9]-48)*3 +
+                (pDocumento[10]-48)*2;
+        digitoVerificador = 11 - (suma % 11);
+        if(digitoVerificador == 11)
+        {
+            digitoVerificador = 0;
+        }
+        else if(digitoVerificador == 10)
+        {
+            digitoVerificador = 9;
+        }
+        ultimoDigitoCuit = pDocumento[12] - 48;
+        if(digitoVerificador == ultimoDigitoCuit)
+        {
+            retorno = 0;
+        }
+        else
+        {
+            printf("%s", mensajeError);
+        }
+    }
+    return retorno;
+}
+/**
 * \brief Toma una cadena y evalua si es un Dni (XX.XXX.XXX) o (X.XXX.XXX)
 * \param pDocumento Recibe el texto ingresado en caso de exito
 * \param limite Es el tamano maximo del string

@@ -5,7 +5,6 @@
 #include "informes.h"
 #include "cliente.h"
 #include "venta.h"
-
 static int comparacionNombreApellido(Cliente* arrayUno, Cliente* arrayDos)
 {
     int retorno=-1;
@@ -19,28 +18,55 @@ static int comparacionNombreApellido(Cliente* arrayUno, Cliente* arrayDos)
     }
     return retorno;
 }
-
-int informar_sortClientePorNombreApellido(void* arrayClientesVoid, int len)
+int informar_sortClientePorApellidoNombre(void* arrayClientesVoid, int lenClientes)
 {
     Cliente auxiliar;
-    Cliente* array = arrayClientesVoid;
+    Cliente* arrayClientes = arrayClientesVoid;
     int retorno=-1;
     int i;
     int j;
-    if(array != NULL && len > 0 )
+    if(arrayClientes != NULL && lenClientes > 0 )
     {
-        for(i=1; i < len; i++)
+        for(i=1; i < lenClientes; i++)
         {
-            auxiliar = array[i];
+            auxiliar = arrayClientes[i];
             j = i - 1;
             if(!auxiliar.isEmpty)
             {
-                while ((j >= 0) && !comparacionNombreApellido(&array[j], &auxiliar))
+                while ((j >= 0) && !comparacionNombreApellido(&arrayClientes[j], &auxiliar))
                 {
-                    array[j + 1] = array[j];
+                    arrayClientes[j + 1] = arrayClientes[j];
                     j--;
                 }
-                array[j + 1] = auxiliar;
+                arrayClientes[j + 1] = auxiliar;
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+
+int informar_sortClientePorCuit(void* arrayClientesVoid, int lenClientes)
+{
+    Cliente auxiliar;
+    Cliente* arrayClientes = arrayClientesVoid;
+    int retorno=-1;
+    int i;
+    int j;
+    if(arrayClientes != NULL && lenClientes > 0 )
+    {
+        for(i=1; i < lenClientes; i++)
+        {
+            auxiliar = arrayClientes[i];
+            j = i - 1;
+            if(!auxiliar.isEmpty)
+            {
+                while ((j >= 0) && strcmp(arrayClientes[j].cuit, auxiliar.cuit) > 0)
+                {
+                    arrayClientes[j + 1] = arrayClientes[j];
+                    j--;
+                }
+                arrayClientes[j + 1] = auxiliar;
             }
         }
         retorno = 0;
@@ -124,8 +150,7 @@ int informar_promedioAfichesPorVenta(void* arrayVentasVoid, int lenVentas, float
     }
     return retorno;
 }
-
-int informar_VentasSuperaOrNoPromedioAfiches(void* arrayVentasVoid,int lenVentas,int *cantidadVentas,int SuperaOrNo)
+int informar_ventasSuperaOrNoPromedioAfiches(void* arrayVentasVoid,int lenVentas,int *cantidadVentas,int SuperaOrNo)
 {
     Venta* arrayVentas = arrayVentasVoid;
     int retorno=-1;
@@ -189,7 +214,8 @@ int informar_mostrarVentaPorZona(void* arrayVentasVoid, int len, int zona)
             if(!arrayVentas[i].isEmpty && arrayVentas[i].zona == zona)
             {
                 printf("\nIdcliente: %d\nAfiches: %d\nImagen: %s\nIDVenta: %d\n",
-                arrayVentas[i].idCliente, arrayVentas[i].cantidadAfiches, arrayVentas[i].archivoImagen, arrayVentas[i].idVenta);
+                arrayVentas[i].idCliente, arrayVentas[i].cantidadAfiches,
+                arrayVentas[i].archivoImagen, arrayVentas[i].idVenta);
                 if(arrayVentas[i].zona == CABA)
                 {
                     printf("Zona: CABA\n");
@@ -228,7 +254,8 @@ int informar_mostrarVentaPorEstadoAndZona(void* arrayVentasVoid, int len, int es
             if(!arrayVentas[i].isEmpty && arrayVentas[i].zona == zona && arrayVentas[i].estado == estado)
             {
                 printf("\nIdcliente: %d\nAfiches: %d\nImagen: %s\nIDVenta: %d\n",
-                arrayVentas[i].idCliente, arrayVentas[i].cantidadAfiches, arrayVentas[i].archivoImagen, arrayVentas[i].idVenta);
+                arrayVentas[i].idCliente, arrayVentas[i].cantidadAfiches,
+                arrayVentas[i].archivoImagen, arrayVentas[i].idVenta);
                 if(arrayVentas[i].zona == CABA)
                 {
                     printf("Zona: CABA\n");
@@ -251,6 +278,157 @@ int informar_mostrarVentaPorEstadoAndZona(void* arrayVentasVoid, int len, int es
                 }
             }
         }
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_ventaConMasAfiches(void* arrayVentasVoid, int lenVentas)
+{
+    Venta* arrayVentas = arrayVentasVoid;
+    int retorno=-1;
+    int i;
+    int mayorCantidadAfiches;
+    if(arrayVentas != NULL && lenVentas > 0)
+    {
+        mayorCantidadAfiches = arrayVentas[0].cantidadAfiches;
+        for(i=1; i < lenVentas; i++)
+        {
+            if(!arrayVentas[i].isEmpty && arrayVentas[i].cantidadAfiches > mayorCantidadAfiches)
+            {
+                mayorCantidadAfiches = arrayVentas[i].cantidadAfiches;
+            }
+        }
+        for(i=0; i < lenVentas; i++)
+        {
+            if(!arrayVentas[i].isEmpty && mayorCantidadAfiches == arrayVentas[i].cantidadAfiches)
+            {
+                venta_mostrar(&arrayVentas[i], 1);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_clienteConMasVentas(void* arrayVentasVoid, int lenVentas,void* arrayClientesVoid, int lenClientes)
+{
+    Venta* arrayVentas = arrayVentasVoid;
+    Cliente* arrayClientes = arrayClientesVoid;
+    int arrayCantidadVentasPorCliente[lenClientes];
+    int retorno=-1;
+    int i;
+    int j;
+    int mayorCantidadVentas = 0;
+    int contadorDeVentasCliente;
+    if(arrayVentas != NULL && lenVentas > 0 && arrayClientes != NULL && lenClientes > 0)
+    {
+        for(i=0; i < lenClientes; i++)
+        {
+            if(!arrayClientes[i].isEmpty)
+            {
+                contadorDeVentasCliente = 0;
+                for(j=0;j<lenVentas; j++)
+                {
+                    if(venta_getByIdCliente(&arrayVentas[j], 1, arrayClientes[i].idCliente) != NULL)
+                    {
+                        contadorDeVentasCliente++;
+                    }
+                }
+                arrayCantidadVentasPorCliente[i] = contadorDeVentasCliente;
+            }
+            if(!arrayClientes[i].isEmpty && arrayCantidadVentasPorCliente[i] > mayorCantidadVentas)
+            {
+                mayorCantidadVentas = arrayCantidadVentasPorCliente[i];
+            }
+        }
+        for(i=0; i < lenClientes; i++)
+        {
+            if(!arrayClientes[i].isEmpty && mayorCantidadVentas == arrayCantidadVentasPorCliente[i])
+            {
+                cliente_mostrar(&arrayClientes[i], 1);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_clienteConMasAfiches(void* arrayVentasVoid, int lenVentas,void* arrayClientesVoid, int lenClientes)
+{
+    Venta* arrayVentas = arrayVentasVoid;
+    Cliente* arrayClientes = arrayClientesVoid;
+    int arrayCantidadAfichesPorCliente[lenClientes];
+    int retorno=-1;
+    int i;
+    int j;
+    int mayorCantidadAfiches = 0;
+    int contadorDeAfichesCliente;
+    if(arrayVentas != NULL && lenVentas > 0 && arrayClientes != NULL && lenClientes > 0)
+    {
+        for(i=0; i < lenClientes; i++)
+        {
+            if(!arrayClientes[i].isEmpty)
+            {
+                contadorDeAfichesCliente = 0;
+                for(j=0;j<lenVentas; j++)
+                {
+                    if(venta_getByIdCliente(&arrayVentas[j], 1, arrayClientes[i].idCliente) != NULL)
+                    {
+                        contadorDeAfichesCliente+=arrayVentas[j].cantidadAfiches;
+                    }
+                }
+                arrayCantidadAfichesPorCliente[i] = contadorDeAfichesCliente;
+            }
+            if(!arrayClientes[i].isEmpty && arrayCantidadAfichesPorCliente[i] > mayorCantidadAfiches)
+            {
+                mayorCantidadAfiches = arrayCantidadAfichesPorCliente[i];
+            }
+        }
+        for(i=0; i < lenClientes; i++)
+        {
+            if(!arrayClientes[i].isEmpty && mayorCantidadAfiches == arrayCantidadAfichesPorCliente[i])
+            {
+                cliente_mostrar(&arrayClientes[i], 1);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_mostrarClientesPorZona(void* arrayClientesVoid, int lenClientes, void* arrayVentasVoid, int lenVentas, int zona)
+{
+    Venta* arrayVentas = arrayVentasVoid;
+    Cliente* arrayClientes = arrayClientesVoid;
+    int retorno = -1;
+    int i;
+    if(arrayVentas != NULL && lenVentas > 0 && arrayClientes != NULL && lenClientes > 0)
+    {
+        for(i=0;i<lenClientes;i++)
+        {
+            if(!arrayClientes[i].isEmpty && venta_getByIdClienteAndZona(arrayVentas,lenVentas,arrayClientes[i].idCliente, zona)!=NULL)
+            {
+                printf("\nNombre: %s\nApellido: %s\nCuit: %s\nID: %d\n\n",
+                arrayClientes[i].nombre, arrayClientes[i].apellido, arrayClientes[i].cuit, arrayClientes[i].idCliente);
+            }
+        }
+        retorno = 0;
+    }
+    return retorno;
+}
+int informar_afichesPorZona(void* arrayVentasVoid, int lenVentas, int zona)
+{
+    Venta* arrayVentas = arrayVentasVoid;
+    int retorno = -1;
+    int i;
+    int cantidadAfiches = 0;
+    if(arrayVentas != NULL && lenVentas > 0 && zona > 0 && zona <=3)
+    {
+        for(i=0;i<lenVentas;i++)
+        {
+            if(!arrayVentas[i].isEmpty && arrayVentas[i].zona == zona)
+            {
+                cantidadAfiches+=arrayVentas[i].cantidadAfiches;
+            }
+        }
+        printf("La cantidad de afiches es %d\n", cantidadAfiches);
         retorno = 0;
     }
     return retorno;

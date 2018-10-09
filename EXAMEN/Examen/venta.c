@@ -19,19 +19,19 @@ static int getNextId()
 /**
 * \brief    Se utiliza esta funcion para obtener el primer lugar libre de un array de tipo venta
 *           recorriendo el array hasta encontrar un isEmpty en 1
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \return devuelve el indice de la posicion libre, sino el return es -1.
 */
-static int getLugarLibreVenta(Venta* array, int len)
+static int getLugarLibreVenta(Venta* arrayVentas, int lenVentas)
 {
     int retorno = -1;
     int i;
-    if(array != NULL && len > 0)
+    if(arrayVentas != NULL && lenVentas > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenVentas;i++)
         {
-            if(array[i].isEmpty)
+            if(arrayVentas[i].isEmpty)
             {
                 retorno = i;
                 break;
@@ -43,19 +43,19 @@ static int getLugarLibreVenta(Venta* array, int len)
 /**
 * \brief    Se utiliza esta funcion para inicializar un array de tipo venta,
 *           recorriendo el array y poniendo cada isEmpty en 1
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \return El retorno es 0 si se realizo de manera correcta, si no el retorno es -1.
 */
-int venta_init(Venta* array, int len)
+int venta_init(Venta* arrayVentas, int lenVentas)
 {
     int retorno = -1;
     int i;
-    if(array != NULL && len > 0)
+    if(arrayVentas != NULL && lenVentas > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenVentas;i++)
         {
-            array[i].isEmpty = 1;
+            arrayVentas[i].isEmpty = 1;
         }
         retorno = 0;
     }
@@ -64,23 +64,23 @@ int venta_init(Venta* array, int len)
 /**
 * \brief    Se utiliza esta funcion para encontrar un venta a través de un id,
 *           recorriendo el array y comparando los id (donde el isEmpty es 0)
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \param id Es el id con que se compara cada id del array
 * \return   retorna la direccion de la struct del venta donde se encontro el id,
 *           si no el retorno es NULL.
 */
-Venta* venta_getByIdCliente(Venta* array, int len, int idCliente)
+Venta* venta_getById(Venta* arrayVentas, int lenVentas, int id)
 {
     Venta* retorno = NULL;
     int i;
-    if(array != NULL && len > 0)
+    if(arrayVentas != NULL && lenVentas > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenVentas;i++)
         {
-            if(!array[i].isEmpty && array[i].idCliente == idCliente)
+            if(!arrayVentas[i].isEmpty && arrayVentas[i].idVenta == id)
             {
-                retorno = &array[i];
+                retorno = &arrayVentas[i];
                 break;
             }
         }
@@ -88,25 +88,25 @@ Venta* venta_getByIdCliente(Venta* array, int len, int idCliente)
     return retorno;
 }
 /**
-* \brief    Se utiliza esta funcion para encontrar un venta a través de un id,
+* \brief    Se utiliza esta funcion para encontrar un venta a través de un id de cliente,
 *           recorriendo el array y comparando los id (donde el isEmpty es 0)
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
-* \param id Es el id con que se compara cada id del array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
+* \param idCliente Es el id con que se compara cada idCliente del array
 * \return   retorna la direccion de la struct del venta donde se encontro el id,
 *           si no el retorno es NULL.
 */
-Venta* venta_getById(Venta* array, int len, int id)
+Venta* venta_getByIdCliente(Venta* arrayVentas, int lenVentas, int idCliente)
 {
     Venta* retorno = NULL;
     int i;
-    if(array != NULL && len > 0)
+    if(arrayVentas != NULL && lenVentas > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenVentas;i++)
         {
-            if(!array[i].isEmpty && array[i].idVenta == id)
+            if(!arrayVentas[i].isEmpty && arrayVentas[i].idCliente == idCliente)
             {
-                retorno = &array[i];
+                retorno = &arrayVentas[i];
                 break;
             }
         }
@@ -114,11 +114,39 @@ Venta* venta_getById(Venta* array, int len, int id)
     return retorno;
 }
 /**
-* \brief    Se utiliza esta funcion para dar de alta un venta generando un id
-*           de manera automatica y el usuario introduce el resto de datos,
+* \brief    Se utiliza esta funcion para encontrar un venta a través de un id de cliente, que
+*           pertenezca a la zona indicada recorriendo el array y comparando los id (donde el isEmpty es 0)
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
+* \param idCliente Es el id con que se compara cada idCliente del array
+* \param zona Es la zona con que se compara cada zona del array venta
+* \return   retorna la direccion de la struct del venta donde se encontro el id y la zona,
+*           si no el retorno es NULL.
+*/
+Venta* venta_getByIdClienteAndZona(Venta* arrayVentas, int lenVentas, int idCliente, int zona)
+{
+    Venta* retorno = NULL;
+    int i;
+    if(arrayVentas != NULL && lenVentas > 0 && zona > 0 && zona <=3)
+    {
+        for(i=0;i<lenVentas;i++)
+        {
+            if(!arrayVentas[i].isEmpty && arrayVentas[i].idCliente == idCliente && arrayVentas[i].zona == zona)
+            {
+                retorno = &arrayVentas[i];
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief    Se utiliza esta funcion para dar de alta una venta generando un id
+*           de manera automatica, poniendo el estado en a cobrar y el usuario introduce el resto de datos,
+*           se verifica que el idCliente sea existente y
 *           si se realiza todo correctamente se guardan los datos y se coloca el isEmpty en 0
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \return El retorno es 0 si se realizo de manera correcta, si no el retorno es -1.
 */
 int venta_alta(Venta* arrayVentas, int lenVentas, void* arrayClientesVoid, int lenClientes)
@@ -139,7 +167,7 @@ int venta_alta(Venta* arrayVentas, int lenVentas, void* arrayClientesVoid, int l
         cliente_getById(arrayClientes, lenClientes, idCliente) != NULL &&
         !utn_getEnteroSoloNumeros(&cantidadAfiches, 10,"cantidad afiches?\n", "cantidad no valida\n",2) &&
         cantidadAfiches != 0 &&
-        !utn_getArchivo(archivoImagen, 51, "Nombre Archivo?\n", "archivo No Valido\n", 2) &&
+        !utn_getArchivo(archivoImagen, 51, "Nombre Archivo?\n", "archivo No Valido (nombre.ext)\n", 2) &&
         !utn_getEnteroSoloNumeros(&zona, 10, "Ingrese zona\n1-CABA\n2-Zona Sur\n3-Zona Oeste\n", "zona no valida\n", 2) &&
         zona > 0 && zona <=3)
     {
@@ -156,14 +184,14 @@ int venta_alta(Venta* arrayVentas, int lenVentas, void* arrayClientesVoid, int l
     return retorno;
 }
 /**
-* \brief    Se utiliza esta funcion para modificar todos los datos de un venta
+* \brief    Se utiliza esta funcion para modificar la zona y la cantidad de afiches de una venta,
 *           el usuario elige a traves de un id e introduce todos los datos por teclado
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \param reintentos Veces que el usuario podra volver a introducir el id
 * \return El retorno es 0 si se realizo de manera correcta, si no el retorno es -1.
 */
-int venta_modificar(Venta* array, int len, int reintentos)
+int venta_modificar(Venta* arrayVentas, int lenVentas, int reintentos)
 {
     int retorno = -1;
     Venta *ventaModificado = NULL;
@@ -171,15 +199,15 @@ int venta_modificar(Venta* array, int len, int reintentos)
     int i;
     int cantidadAfiches;
     int zona;
-    if(array != NULL && len > 0 && reintentos >= 0)
+    if(arrayVentas != NULL && lenVentas > 0 && reintentos >= 0)
     {
-        venta_mostrar(array, len);
+        venta_mostrar(arrayVentas, lenVentas);
         for(i=0; i <= reintentos; i++)
         {
-            if( !utn_getEntero(&id, len, "Introduzca el Id que desea modificar\n", "", 0) &&
-                venta_getById(array, len, id) != NULL)
+            if( !utn_getEntero(&id, lenVentas, "Introduzca el Id de venta que desea modificar\n", "", 0) &&
+                venta_getById(arrayVentas, lenVentas, id) != NULL)
             {
-                ventaModificado = venta_getById(array, len, id);
+                ventaModificado = venta_getById(arrayVentas, lenVentas, id);
                 break;
             }
             else
@@ -201,13 +229,13 @@ int venta_modificar(Venta* array, int len, int reintentos)
     return retorno;
 }
 /**
-* \brief    Se utiliza esta funcion para dar de baja (baja logica) una venta,
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \brief    Se utiliza esta funcion para dar de baja (baja logica) una venta
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \param reintentos Veces que el usuario podra volver a introducir el id
 * \return El retorno es 0 si se realizo de manera correcta, si no el retorno es -1.
 */
-int venta_cobrar(Venta* array, int len, void *arrayClientesVoid,int lenClientes,int reintentos)
+int venta_cobrar(Venta* arrayVentas, int lenVentas, void *arrayClientesVoid, int lenClientes, int reintentos)
 {
     int retorno = -1;
     Venta *ventaCobrar;
@@ -216,15 +244,15 @@ int venta_cobrar(Venta* array, int len, void *arrayClientesVoid,int lenClientes,
     char confirmarBaja[10];
     int id;
     int i;
-    if(array != NULL && len > 0 && reintentos >= 0)
+    if(arrayVentas != NULL && lenVentas > 0 && arrayClientes != NULL && lenClientes > 0 && reintentos >= 0)
     {
-        venta_mostrar(array, len);
+        venta_mostrar(arrayVentas, lenVentas);
         for(i=0; i<= reintentos; i++)
         {
-            if( !utn_getEntero(&id, len, "Introduzca el Id que cobrar\n", "", 0) &&
-                venta_getById(array, len, id) != NULL)
+            if( !utn_getEntero(&id, lenVentas, "Introduzca el Id de venta a cobrar\n", "", 0) &&
+                venta_getById(arrayVentas, lenVentas, id) != NULL)
             {
-                ventaCobrar = venta_getById(array, len, id);
+                ventaCobrar = venta_getById(arrayVentas, lenVentas, id);
                 if(ventaCobrar->estado == A_COBRAR)
                 {
                     printf("Se cobrara la venta de este cliente\n");
@@ -255,64 +283,66 @@ int venta_cobrar(Venta* array, int len, void *arrayClientesVoid,int lenClientes,
     return retorno;
 }
 /**
-* \brief    Se utiliza esta funcion para cargar los datos de una venta
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \brief    Se utiliza esta funcion para cargar todos los datos de una venta
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \return El retorno es 0 si se mostraron los datos, si no el retorno es -1.
 */
-int venta_ingresoForzado(Venta* array, int len, int idCliente, int afiches, char *archivo, int zona, int estado)
+int venta_ingresoForzado(Venta* arrayVentas, int lenVentas, int idCliente, int afiches, char *archivo, int zona, int estado)
 {
     int retorno = -1;
     int indice;
-    indice = getLugarLibreVenta(array,len);
-    if( array != NULL && len > 0)
+    indice = getLugarLibreVenta(arrayVentas,lenVentas);
+    if( arrayVentas != NULL && lenVentas > 0 && idCliente >= 0 && afiches >= 0 && archivo != NULL &&
+        zona > 0 && zona <= 3 && estado > 0 && estado <= 2)
     {
-        array[indice].idCliente = idCliente;
-        array[indice].cantidadAfiches = afiches;
-        strncpy(array[indice].archivoImagen, archivo, 51);
-        array[indice].zona = zona;
-        array[indice].estado = estado;
-        array[indice].idVenta = getNextId();
-        array[indice].isEmpty = 0;
+        arrayVentas[indice].idCliente = idCliente;
+        arrayVentas[indice].cantidadAfiches = afiches;
+        strncpy(arrayVentas[indice].archivoImagen, archivo, 51);
+        arrayVentas[indice].zona = zona;
+        arrayVentas[indice].estado = estado;
+        arrayVentas[indice].idVenta = getNextId();
+        arrayVentas[indice].isEmpty = 0;
         retorno = 0;
     }
     return retorno;
 }
 /**
 * \brief    Se utiliza esta funcion para mostrar todos los datos de las ventas
-* \param array Es el array que se recorre
-* \param len Es el limite de ventas que puede guardar el array
+* \param arrayVentas Es el array que se recorre
+* \param lenVentas Es el limite de ventas que puede guardar el array
 * \return El retorno es 0 si se mostraron los datos, si no el retorno es -1.
 */
-int venta_mostrar(Venta* array, int len)
+int venta_mostrar(Venta* arrayVentas, int lenVentas)
 {
     int retorno = -1;
     int i;
-    if(array != NULL && len > 0)
+    if(arrayVentas != NULL && lenVentas > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenVentas;i++)
         {
-            if(!array[i].isEmpty)
+            if(!arrayVentas[i].isEmpty)
             {
                 printf("\nIdcliente: %d\nAfiches: %d\nImagen: %s\nIDVenta: %d\n",
-                array[i].idCliente, array[i].cantidadAfiches, array[i].archivoImagen, array[i].idVenta);
-                if(array[i].zona == CABA)
+                arrayVentas[i].idCliente, arrayVentas[i].cantidadAfiches,
+                arrayVentas[i].archivoImagen, arrayVentas[i].idVenta);
+                if(arrayVentas[i].zona == CABA)
                 {
                     printf("Zona: CABA\n");
                 }
-                else if(array[i].zona == ZONA_SUR)
+                else if(arrayVentas[i].zona == ZONA_SUR)
                 {
                     printf("Zona: Zona Sur\n");
                 }
-                else if(array[i].zona == ZONA_OESTE)
+                else if(arrayVentas[i].zona == ZONA_OESTE)
                 {
                     printf("Zona: Zona Oeste\n");
                 }
-                if(array[i].estado == A_COBRAR)
+                if(arrayVentas[i].estado == A_COBRAR)
                 {
                     printf("Estado: A cobrar\n\n");
                 }
-                else if(array[i].estado == COBRADA)
+                else if(arrayVentas[i].estado == COBRADA)
                 {
                     printf("Estado: Cobrado\n\n");
                 }

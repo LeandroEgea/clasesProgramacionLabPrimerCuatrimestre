@@ -11,25 +11,25 @@ int main()
 {
     Cliente clientes[CANTIDAD_CLIENTES];
     Venta ventas[CANTIDAD_VENTAS];
-    cliente_init(clientes, CANTIDAD_CLIENTES);
     int salidaDelMenu = 0;
     int elegirOpcion;
     cliente_init(clientes, CANTIDAD_CLIENTES);
     venta_init(ventas, CANTIDAD_VENTAS);
-    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Perez", "20-30444555-2");
-    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Ramon", "Alonso", "20-90444555-3");
-    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Gomez", "20-60444555-4");
-    //cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Sara", "Alvarez", "20-80444555-4");
-    //cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Ramirez", "20-30444555-2");
-    //cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Ramon", "Abila", "20-90444555-3");
 
-    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 1, 40, "imagen2.jpg", 2, 1);
-    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 1, 400, "imagen8.jpg", 1, 2);
-    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 3, 1, "imagen.jpg", 2, 1);
-    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 3, 4, "imagenadafgads.jpg", 3, 1);
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Perez", "20-80444555-2");
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Ramon", "Alvarez", "20-90444555-3");
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Gomez", "20-60444555-4");
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Sara", "Alvarez", "20-80444555-4");
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Daniel", "Ramirez", "20-30444555-2");
+    cliente_ingresoForzado(clientes, CANTIDAD_CLIENTES, "Ramon", "Abila", "20-90444555-3");
+    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 1, 200, "imagen2.jpg", ZONA_OESTE, A_COBRAR);
+    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 1, 200, "imagen8.jpg", ZONA_OESTE, COBRADA);
+    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 2, 400, "imagen.jpg", ZONA_OESTE, A_COBRAR);
+    venta_ingresoForzado(ventas, CANTIDAD_VENTAS, 3, 400, "imagenadafgads.jpg", CABA, A_COBRAR);
+
     while(salidaDelMenu == 0)
     {
-        //system("clear");
+        system("clear");
         printf("1. Alta  cliente\n"
                "2. Modificar cliente\n"
                "3. Baja cliente\n"
@@ -49,14 +49,13 @@ int main()
                 }
                 break;
             case 2:
-                informar_sortClientePorNombreApellido(clientes, CANTIDAD_CLIENTES);
                 if(cliente_modificar(clientes, CANTIDAD_CLIENTES, 2) != 0)
                 {
                     printf("No se pudo modificar el cliente\n");
                 }
                 break;
             case 3:
-                if(cliente_baja(clientes, CANTIDAD_CLIENTES, ventas,CANTIDAD_VENTAS, 2) != 0)
+                if(cliente_baja(clientes, CANTIDAD_CLIENTES, ventas, CANTIDAD_VENTAS, 2) != 0)
                 {
                     printf("No se pudo dar de baja el cliente\n");
                 }
@@ -82,9 +81,16 @@ int main()
             case 7:
                 if(cliente_mostrarVentas(clientes, CANTIDAD_CLIENTES, ventas,CANTIDAD_VENTAS) != 0)
                 {
-                    printf("No se pudo cobrar\n");
+                    printf("No se pudo mostrar la informacion\n");
                 }
                 break;
+            /*case 8:
+                if(informes_menu(clientes, CANTIDAD_CLIENTES, ventas, CANTIDAD_VENTAS) != 0)
+                {
+                    printf("No se pudo mostrar la informacion\n");
+                }
+                break;
+            */
             default:
                 printf("Opcion Incorrecta\n");
                 break;
