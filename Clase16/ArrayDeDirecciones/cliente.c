@@ -105,3 +105,5 @@ Cliente* cliente_newClienteParametros(char* nombre, char* apellido, char* id)
 //hacer isValid propios de la entidad
 //delete
 //mirar todo y corregirlo un poco validar todo
+//hacer Abm del parcial con todo esto
+//mirar que hace el generadr de getters y setters
