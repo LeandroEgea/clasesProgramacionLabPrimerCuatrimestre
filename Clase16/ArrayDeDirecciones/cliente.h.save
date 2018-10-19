@@ -1,0 +1,11 @@
+#ifndef CLIENTE_H_INCLUDED
+#define CLIENTE_H_INCLUDED
+typedef struct
+{
+    char nombre[51];
+    char apellido[51];
+    int idCliente;
+}Cliente;
+
+Cliente* cli_newCliente(void)
+#endif

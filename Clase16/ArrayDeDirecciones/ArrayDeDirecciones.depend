@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1539909601 source:/home/alumno/Escritorio/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/main.c
+	<stdio.h>
+	<stdlib.h>
+	"cliente.h"
+	"string.h"
+	"utn.h"
+
+1539910362 /home/alumno/Escritorio/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/cliente.h
+
+1539911272 source:/home/alumno/Escritorio/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/cliente.c
+	<stdio.h>
+	<stdlib.h>
+	"cliente.h"
+	"string.h"
+	"utn.h"
+
+1539906997 /home/alumno/Escritorio/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/utn.h
+
+1539906997 source:/home/alumno/Escritorio/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
