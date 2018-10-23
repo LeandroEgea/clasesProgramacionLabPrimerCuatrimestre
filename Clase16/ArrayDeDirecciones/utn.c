@@ -79,7 +79,7 @@ static int isValidAlfabetico(char *pBuffer, int limite)
 * \return En caso de exito retorna 1, si no 0
 *
 */
-int isValidNombre(char *pBuffer, int limite)
+static int isValidNombre(char *pBuffer, int limite)
 {
     int retorno = 0;
     int cantidadEspacios = 0;

@@ -1,13 +1,11 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
-typedef struct
+typedef struct Empleado
 {
     char nombre[50];
     char apellido[50];
     char DNI[20];
 }utnEmpleado;
-
-int isValidNombre(char *pBuffer, int limite);
 
 //TOMA DE DATOS PARA EL MAIN
 int utn_getAlfabetico(  char* pAlfabetico, int limite, char* mensaje,

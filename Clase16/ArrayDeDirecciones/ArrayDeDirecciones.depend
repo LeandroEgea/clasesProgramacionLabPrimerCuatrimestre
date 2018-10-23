@@ -24,3 +24,28 @@
 	<ctype.h>
 	"utn.h"
 
+1540263078 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/main.c
+	<stdio.h>
+	<stdlib.h>
+	"cliente.h"
+	"string.h"
+	"utn.h"
+
+1540262685 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/cliente.h
+
+1540262515 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/utn.h
+
+1540261031 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1540263200 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase16/ArrayDeDirecciones/cliente.c
+	"cliente.h"
+	"utn.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
