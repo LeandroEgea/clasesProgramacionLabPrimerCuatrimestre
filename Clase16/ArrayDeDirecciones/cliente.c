@@ -10,7 +10,7 @@ static int isValidNombre(char *pBuffer, int limite)
     int cantidadEspacios = 0;
     int i;
     if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
-        pBuffer[0]>='A' && pBuffer[0]<='Z')
+        pBuffer[0]>='A' && pBuffer[0]<='Y')
 
     {
         retorno = 1;
@@ -20,8 +20,8 @@ static int isValidNombre(char *pBuffer, int limite)
             {
                 cantidadEspacios++;
             }
-            else if(!(pBuffer[i] >= 'a' && pBuffer[i] <= 'z' && pBuffer[i-1] != ' ') &&
-                    !(pBuffer[i] >= 'A' && pBuffer[i] <= 'Z' && pBuffer[i-1] == ' '))
+            else if(!(pBuffer[i] >= 'a' && pBuffer[i] <= 'y' && pBuffer[i-1] != ' ') &&
+                    !(pBuffer[i] >= 'A' && pBuffer[i] <= 'Y' && pBuffer[i-1] == ' '))
             {
                 retorno = 0;
                 break;
@@ -171,7 +171,7 @@ int cliente_buscarPorId(Cliente** arrayClientes,int lenClientes, int id)
     {
         for(i=0; i<lenClientes; i++)
         {
-            if((arrayClientes+i) != NULL && (*(arrayClientes+i))->idCliente == id)//preguntar
+            if((arrayClientes+i) != NULL && (*(arrayClientes+i))->idCliente == id)
             {
                 retorno = i;
                 break;

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1540335884 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1540341828 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.c
+	"persona.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1540342230 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.h
+
