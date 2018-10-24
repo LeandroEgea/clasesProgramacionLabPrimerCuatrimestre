@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+//falta pasarle todo a newConParametros como char, validarlo y convertirlo
 static int isValidNombre(char *pBuffer, int limite)
 {
     int retorno = 0;

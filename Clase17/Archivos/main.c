@@ -8,10 +8,9 @@ void mostrar(Persona** arrayPunterosCliente,int cantidad)
     int i;
     for(i=0;i<cantidad;i++)
     {
-        printf("%s\n",(*(arrayPunterosCliente+i))->apellido;//NOOOOOOOOOOOOOOOOOOOO
+        printf("%s\n",(*(arrayPunterosCliente+i))->apellido);
     }
 }
-
 int main()
 {
     Persona* arrayPunterosPersona[1024];
@@ -32,7 +31,9 @@ int main()
         while(!feof(pArchivo))
         {
             fscanf(pArchivo, "%[^,],%[^,],%[^,],%[^\n]\n",bufferId,bufferNombre,bufferApellido,bufferIsEmpty);
-            fprintf(pArchivoBkp, "%s\n",buffer);
+            //fprintf(pArchivoBkp, "%s\n",buffer);
+            arrayPunterosPersona[i] = persona_newConParametros( bufferId,bufferNombre,51,
+                                                                bufferApellido,51,bufferIsEmpty);
             i++;
         }
         fclose(pArchivo);
@@ -42,5 +43,6 @@ int main()
     {
         printf("Error no existe!!!");
     }
+    mostrar(arrayPunterosPersona,i);
     return 0;
 }
