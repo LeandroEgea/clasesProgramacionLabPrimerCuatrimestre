@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "persona.h"
+#include "utn.h"
 /*id,first_name,last_name,is_empty
 1,Eric,Knight,false*/
 void mostrar(Persona** arrayPunterosCliente,int cantidad)
@@ -31,9 +32,15 @@ int main()
         while(!feof(pArchivo))
         {
             fscanf(pArchivo, "%[^,],%[^,],%[^,],%[^\n]\n",bufferId,bufferNombre,bufferApellido,bufferIsEmpty);
-            //fprintf(pArchivoBkp, "%s\n",buffer);
+            //printf("%s\n",bufferIsEmpty);
             arrayPunterosPersona[i] = persona_newConParametros( bufferId,bufferNombre,51,
                                                                 bufferApellido,51,bufferIsEmpty);
+            //printf("%s\n",arrayPunterosPersona[i]->apellido);
+            //printf("%s\n",arrayPunterosPersona[i]->isEmpty);
+            if(arrayPunterosPersona[i]!=NULL)
+            {
+                fprintf(pArchivoBkp, "%s,%s,%s,%s\n",bufferId,bufferNombre,bufferApellido,bufferIsEmpty);
+            }
             i++;
         }
         fclose(pArchivo);
@@ -43,6 +50,6 @@ int main()
     {
         printf("Error no existe!!!");
     }
-    mostrar(arrayPunterosPersona,i);
+    //mostrar(arrayPunterosPersona,i);
     return 0;
 }

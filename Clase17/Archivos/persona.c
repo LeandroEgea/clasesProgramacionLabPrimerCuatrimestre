@@ -2,7 +2,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//falta pasarle todo a newConParametros como char, validarlo y convertirlo
+#include <ctype.h>
+/**
+* \brief Evalua si se trata de un entero sin signo
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+static int isValidEnteroSoloNumeros(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if (pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0)
+    {
+        retorno = 1;
+        for(i=0; i < limite && pBuffer[i] != '\0'; i++)
+        {
+            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief    Evalua si es un nombre, solo puede tener un espacio y cada nombre
+*           debe empezar por mayuscula y el resto minusculas (Jose)(Jose Maria)(Lopez)(Lopez Gomez)
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 1, si no 0
+*
+*/
 static int isValidNombre(char *pBuffer, int limite)
 {
     int retorno = 0;
@@ -30,12 +63,37 @@ static int isValidNombre(char *pBuffer, int limite)
     return retorno;
 }
 
-int persona_setIdPersona(Persona* this,int idPersona)
+static int isValidTrueOrFalse(char* pBuffer, int limite)
+{
+    int retorno = 0;
+    //char pBufferAux[1024];
+    //strncpy(pBufferAux,pBuffer,1024);
+    //char verdadero[5];
+    char verdadero[5] = {'t','r','u','e','\0'};
+    //char falso[6];
+    char falso[6] = {'f','a','l','s','e','\0'};
+    //strcpy(verdadero, "true\0");
+    //strcpy(falso, "false\0");
+    if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
+        (!strcmp(pBuffer, verdadero) || !strcmp(pBuffer, falso)))
+        //(!strcmp(pBufferAux, verdadero) || !strcmp(pBufferAux, falso)))
+        //(!strcmp(pBuffer, "true") || !strcmp(pBuffer, "false")))
+    {
+        retorno = 1;
+    }
+    printf("%s\n",pBuffer);
+    printf("%d\n", retorno);
+    return retorno;
+}
+
+int persona_setIdPersona(Persona* this,char* idPersona)
 {
     int retorno=-1;
-    if(this!=NULL)
+    int idPersonaInt;
+    if(this!=NULL && isValidEnteroSoloNumeros(idPersona,20))
     {
-        this->idPersona=idPersona;
+        idPersonaInt = atoi(idPersona);
+        this->idPersona=idPersonaInt;
         retorno=0;
     }
     return retorno;
@@ -96,14 +154,23 @@ int persona_getApellido(Persona* this,char* apellido,int lenApellido)
     return retorno;
 }
 
-int persona_setIsEmpty(Persona* this,int isEmpty)
+int persona_setIsEmpty(Persona* this,char* isEmpty)
 {
     int retorno=-1;
-    if(this!=NULL)
+    if(this!=NULL && isValidTrueOrFalse(isEmpty, 20))
     {
-        this->isEmpty=isEmpty;
-        retorno=0;
+        if(!strcmp(isEmpty,"true"))
+        {
+            this->isEmpty=1;
+            retorno=0;
+        }
+        else if(!strcmp(isEmpty,"false"))
+        {
+            this->isEmpty=0;
+            retorno=0;
+        }
     }
+    //retorno = 0;
     return retorno;
 }
 
@@ -136,7 +203,8 @@ int persona_delete(Persona* this)
     return retorno;
 }
 
-Persona* persona_newConParametros(int idPersona,char* nombre,int lenNombre,char* apellido,int lenApellido,int isEmpty)
+Persona* persona_newConParametros(  char* idPersona,char* nombre,int lenNombre,
+                                    char* apellido,int lenApellido,char* isEmpty)
 {
     Persona* this;
     this = persona_new();

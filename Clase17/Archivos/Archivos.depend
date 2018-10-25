@@ -11,3 +11,27 @@
 
 1540342230 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.h
 
+1540425212 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/main.c
+	<stdio.h>
+	<stdlib.h>
+	"persona.h"
+	"utn.h"
+
+1540421623 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.h
+
+1540262515 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/utn.h
+
+1540261031 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1540425038 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.c
+	"persona.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
