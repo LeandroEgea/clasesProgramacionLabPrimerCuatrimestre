@@ -66,23 +66,11 @@ static int isValidNombre(char *pBuffer, int limite)
 static int isValidTrueOrFalse(char* pBuffer, int limite)
 {
     int retorno = 0;
-    //char pBufferAux[1024];
-    //strncpy(pBufferAux,pBuffer,1024);
-    //char verdadero[5];
-    char verdadero[5] = {'t','r','u','e','\0'};
-    //char falso[6];
-    char falso[6] = {'f','a','l','s','e','\0'};
-    //strcpy(verdadero, "true\0");
-    //strcpy(falso, "false\0");
     if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
-        (!strcmp(pBuffer, verdadero) || !strcmp(pBuffer, falso)))
-        //(!strcmp(pBufferAux, verdadero) || !strcmp(pBufferAux, falso)))
-        //(!strcmp(pBuffer, "true") || !strcmp(pBuffer, "false")))
+        (!strncmp(pBuffer, "true",4) || !strncmp(pBuffer, "false",5)))
     {
         retorno = 1;
     }
-    printf("%s\n",pBuffer);
-    printf("%d\n", retorno);
     return retorno;
 }
 
@@ -159,18 +147,17 @@ int persona_setIsEmpty(Persona* this,char* isEmpty)
     int retorno=-1;
     if(this!=NULL && isValidTrueOrFalse(isEmpty, 20))
     {
-        if(!strcmp(isEmpty,"true"))
+        if(!strncmp(isEmpty,"true",4))
         {
             this->isEmpty=1;
             retorno=0;
         }
-        else if(!strcmp(isEmpty,"false"))
+        else if(!strncmp(isEmpty,"false",5))
         {
             this->isEmpty=0;
             retorno=0;
         }
     }
-    //retorno = 0;
     return retorno;
 }
 

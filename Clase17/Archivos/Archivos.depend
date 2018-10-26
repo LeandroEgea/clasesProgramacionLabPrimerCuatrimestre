@@ -1,15 +1,18 @@
 # depslib dependency file v1.0
-1540335884 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/main.c
+1540503990 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/main.c
 	<stdio.h>
 	<stdlib.h>
+	"persona.h"
+	"utn.h"
 
-1540341828 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.c
+1540509321 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.c
 	"persona.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<ctype.h>
 
-1540342230 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.h
+1540503990 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/persona.h
 
 1540425212 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/main.c
 	<stdio.h>
@@ -34,4 +37,13 @@
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
+
+1540503990 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/utn.h
+
+1540503990 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase17/Archivos/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
 
