@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
-
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  *
  * \param path char*
@@ -38,7 +37,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
                                                     bufferHorasTrabajadas,
                                                     bufferSueldo);
 
-            pEmpleado = Employee_newConParametros(  bufferId,
+            pEmpleado = employee_newConParametros(  bufferId,
                                                     bufferNombre,
                                                     128,
                                                     bufferHorasTrabajadas,

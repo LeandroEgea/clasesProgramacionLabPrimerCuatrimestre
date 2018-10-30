@@ -72,8 +72,8 @@ static int isValidAlfabetico(char *pBuffer, int limite)
     return retorno;
 }
 /**
-* \brief    Evalua si es un nombre, solo puede tener un espacio y cada nombre
-*           debe empezar por mayuscula y el resto minusculas (Jose)(Jose Maria)(Lopez)(Lopez Gomez)
+* \brief    Evalua si es un nombre, solo puede tener un espacio o guion y el nombre
+*           debe empezar por mayuscula y el resto minusculas (Jose)(Jose Maria)(Jose-Maria)(Jose maria)(Jose-maria)
 * \param pBuffer Es la cadena que evaluamos
 * \param limite Es el tamano maximo del string
 * \return En caso de exito retorna 1, si no 0
@@ -82,21 +82,20 @@ static int isValidAlfabetico(char *pBuffer, int limite)
 int utn_isValidNombre(char *pBuffer, int limite)
 {
     int retorno = 0;
-    int cantidadEspacios = 0;
+    int cantidadEspaciosGuiones = 0;
     int i;
     if( pBuffer != NULL && limite > 0 && strlen(pBuffer) > 0 &&
         pBuffer[0]>='A' && pBuffer[0]<='Z')
-
     {
         retorno = 1;
         for(i=1; i < limite && pBuffer[i] != '\0'; i++)
         {
-            if(pBuffer[i]==' ' && cantidadEspacios == 0)
+            if((pBuffer[i]==' ' || pBuffer[i]=='-')&& cantidadEspaciosGuiones == 0)
             {
-                cantidadEspacios++;
+                cantidadEspaciosGuiones++;
             }
-            else if(!(pBuffer[i] >= 'a' && pBuffer[i] <= 'z' && pBuffer[i-1] != ' ') &&
-                    !(pBuffer[i] >= 'A' && pBuffer[i] <= 'Z' && pBuffer[i-1] == ' '))
+            else if(!(pBuffer[i] >= 'a' && pBuffer[i] <= 'z') &&
+                    !(pBuffer[i] >= 'A' && pBuffer[i] <= 'Z' && pBuffer[i-1] == ' ' && pBuffer[i-1] == '-'))
             {
                 retorno = 0;
                 break;
