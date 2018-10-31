@@ -53,50 +53,51 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1540516261 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Employee.c
+1540935648 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Employee.c
 	"Employee.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 
-1540516318 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Employee.h
+1540935648 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Employee.h
 
-1540515545 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/parser.c
+1540948281 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
 
-1533133022 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/LinkedList.h
+1540935648 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/LinkedList.h
 
-1540516251 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/main.c
-	<stdio.h>
+1540946027 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/main.c
+	<stdio_ext.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
+	"utn.h"
 
-1533133022 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Controller.h
+1540935648 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Controller.h
 
-1540515499 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Controller.c
+1540946931 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Controller.c
 	<stdio.h>
 	<stdlib.h>
 	"parser.h"
 	"LinkedList.h"
 	"Employee.h"
 
-1540507340 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/parser.h
+1540935648 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/parser.h
 	"LinkedList.h"
 
-1540514359 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/utn.c
+1540935648 source:/home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/utn.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"utn.h"
 
-1540513330 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/utn.h
+1540935648 /home/alumno/Documentos/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/utn.h
 
 1540771006 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/Clase18/Linux_64/Controller.c
 	<stdio.h>

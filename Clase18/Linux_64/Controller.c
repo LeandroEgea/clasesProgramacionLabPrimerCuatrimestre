@@ -34,7 +34,16 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = -1;
+    FILE* pArchivo;
+    pArchivo = fopen(path,"rb");
+    if(!parser_EmployeeFromBinary(pArchivo,pArrayListEmployee))
+    {
+        printf("\nArchivo cargado");
+        retorno = 0;
+    }
+    fclose(pArchivo);
+    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -44,6 +53,8 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
+ //funcion privada del controller para el editar y añadir(parte comun) usando utn.h
+ //separar los get de los valid en el utn.h
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     return 1;
@@ -56,6 +67,9 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
+ //intentar hacerlo un poco mas copado
+ //le mostras lo q tiene cada campo y si lo quiere cambiar
+ //le muestra el nuevo y el viejo, y que confirme si desea cambiar
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     return 1;
@@ -68,6 +82,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
+ //ll_remove hace la baja fisica, pero  no es obligatorio usarla???
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
     return 1;
@@ -118,6 +133,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
+  //pasar lo importante al parser
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
     return 1;
@@ -130,8 +146,26 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
+ //pasar lo importante al parser
+ //hacer bien lo del retorno
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
+    FILE *pArchivo = fopen(path, "wb");
+    Employee* pEmpleado;
+    int i;
+    //char nombre[128];
+
+    if(pArchivo != NULL)//comprobar siempre por el modo administrador
+    {
+        for(i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmpleado = ll_get(pArrayListEmployee,i);
+            //employee_getNombre(pEmpleado,nombre);
+            //printf("\n%s",nombre);
+            fwrite(pEmpleado,sizeof(Employee),1,pArchivo);
+        }
+    }
+    fclose(pArchivo);
     return 1;
 }
 
