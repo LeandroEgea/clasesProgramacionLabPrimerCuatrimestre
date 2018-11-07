@@ -463,12 +463,7 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 */
 LinkedList* ll_clone(LinkedList* this)
 {
-    LinkedList* cloneArray = NULL;
-    if(this != NULL)
-    {
-        cloneArray = ll_subList(this,0,ll_len(this));
-    }
-    return cloneArray;
+    return ll_subList(this,0,ll_len(this));
 }
 
 
@@ -481,9 +476,58 @@ LinkedList* ll_clone(LinkedList* this)
  */
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
-    int returnAux =-1;
+    int returnAux = -1;
+    int i;
+    int j;
+    void* auxElement;
 
+    if(this != NULL&& (order == 0 || order == 1))
+    {
+        for(i=1; i < ll_len(this); i++)
+        {
+            auxElement = ll_get(this, i);
+            j = i - 1;
+            if(order == 0)
+            {
+                while ((j >= 0))// && //(auxiliarNumero < pArray[j]))
+                {
+                    ll_get(this,j+1) = ll_get(this,j);//intentar sacar los get
+                    j--;
+                }
+                ll_get(this,j+1) = auxElement;//intentar sacar los get
+            }
+            else if(order == 1)
+            {
+                while ((j >= 0))// && //(auxiliarNumero > pArray[j]))
+                {
+                    ll_get(this,j+1) = ll_get(this,j);//intentar sacar los get
+                    j--;
+                }
+                ll_get(this,j+1) = auxElement;//intentar sacar los get
+            }
+        }
+        returnAux = 0;
+    }
     return returnAux;
-
 }
-
+/** \brief Intercambia los elementos de dos nodos consecutivos
+ * \param pList LinkedList* Puntero a la lista
+ * \param pNodeAnterior Es el primer nodo que se va a intercambiar, el segundo lo obtenemos de su pNextNode
+ * \return int Retorna  (-1) Error: si el puntero a la lista es NULL o alguno de los nodos es NULLL
+                                ( 0) Si ok
+ */
+ //no la uso para nada pero la queria hacer
+int ll_swapElement(LinkedList* this, Node* pNodeAnterior)
+{
+    int returnAux = -1;
+    Node* pNodeSiguiente = pNodeAnterior->pNextNode;
+    void* auxElement = NULL;
+    if(this != NULL && pNodeAnterior != NULL && pNodeSiguiente != NULL)
+    {
+        auxElement = pNodeAnterior->pElement;
+        pNodeAnterior->pElement = pNodeSiguiente->pElement;
+        pNodeSiguiente->pElement = auxElement;
+        returnAux = 0;
+    }
+    return returnAux;
+}
