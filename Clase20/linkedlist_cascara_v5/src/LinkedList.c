@@ -466,7 +466,6 @@ LinkedList* ll_clone(LinkedList* this)
     return ll_subList(this,0,ll_len(this));
 }
 
-
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
  * \param pList LinkedList* Puntero a la lista
  * \param pFunc (*pFunc) Puntero a la funcion criterio
@@ -480,30 +479,36 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     int i;
     int j;
     void* auxElement;
-
+    Node* auxNode;
     if(this != NULL&& (order == 0 || order == 1))
     {
+
         for(i=1; i < ll_len(this); i++)
         {
             auxElement = ll_get(this, i);
             j = i - 1;
+            auxNode = getNode(this,j);
             if(order == 0)
             {
-                while ((j >= 0))// && //(auxiliarNumero < pArray[j]))
+                while ((j >= 0) && !(*pFunc)(auxNode->pElement,auxNode->pNextNode->pElement))// && //(auxiliarNumero < pArray[j]))
                 {
-                    ll_get(this,j+1) = ll_get(this,j);//intentar sacar los get
+                    auxNode = getNode(this, j);
+                    auxNode->pNextNode->pElement = auxNode->pElement;
                     j--;
                 }
-                ll_get(this,j+1) = auxElement;//intentar sacar los get
+                auxNode = getNode(this, j+1);
+                auxNode->pElement = auxElement;
             }
             else if(order == 1)
             {
-                while ((j >= 0))// && //(auxiliarNumero > pArray[j]))
+                while ((j >= 0) && ((j >= 0) && (*pFunc)(auxNode->pElement,auxNode->pNextNode->pElement)))// && //(auxiliarNumero > pArray[j]))
                 {
-                    ll_get(this,j+1) = ll_get(this,j);//intentar sacar los get
+                    auxNode = getNode(this, j);
+                    auxNode->pNextNode->pElement = auxNode->pElement;
                     j--;
                 }
-                ll_get(this,j+1) = auxElement;//intentar sacar los get
+                auxNode = getNode(this, j+1);
+                auxNode->pElement = auxElement;
             }
         }
         returnAux = 0;
