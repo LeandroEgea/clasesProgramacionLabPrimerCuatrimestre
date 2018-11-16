@@ -26,32 +26,26 @@ int generarArchivoSueldos(char* fileName,LinkedList* listaEmpleados);
 
 int main()
 {
-    // Definir lista de empleados
-    //LinkedList* listaEmpleados;
+    LinkedList* listaEmpleados = ll_newLinkedList();
 
-    // Crear lista empledos
-    //...
 
-    // Leer empleados de archivo data.csv
-    /*if(parser_parseEmpleados("data.csv",listaEmpleados)==1)
+    if(!parser_parseEmpleados("data.csv",listaEmpleados))
     {
-        // Calcular sueldos
         printf("Calculando sueldos de empleados\n");
 
-        //al_map(listaEmpleados,em_calcularSueldo);
+        ll_map(listaEmpleados,em_calcularSueldo, 0,ll_len(listaEmpleados));
+        empleado_list(listaEmpleados);
 
-        // Generar archivo de salida
-        if(generarArchivoSueldos("sueldos.csv",listaEmpleados)==1)
+        /*if(generarArchivoSueldos("sueldos.csv",listaEmpleados)==1)
         {
             printf("Archivo generado correctamente\n");
         }
         else
-            printf("Error generando archivo\n");
+            printf("Error generando archivo\n");*/
     }
     else
-        printf("Error leyando empleados\n");
+        printf("Error leyendo empleados\n");
 
-*/
     return 0;
 }
 
@@ -59,3 +53,4 @@ int generarArchivoSueldos(char* fileName,LinkedList* listaEmpleados)
 {
     return 1;
 }
+

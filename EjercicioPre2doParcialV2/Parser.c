@@ -6,17 +6,15 @@ int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
 {
     char bufferLine[1024];
     char* delimitador = ",";
+    char* token;
     char bufferId[1024];
     char bufferNombre[1024];
     char bufferHorasTrabajadas[1024];
     int retorno = -1;
     int flagOnce = 1;
-    int i;
     Empleado* pEmpleado;
-    char *token;
     FILE* pFile;
-    pFile = fopen("data.csv","w");
-
+    pFile = fopen(fileName,"r");
     if(pFile!=NULL)
     {
         while(!feof(pFile))
@@ -27,31 +25,25 @@ int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
                 flagOnce = 0;
             }
             fscanf(pFile,"%[^\n]\n",bufferLine);
-            token = strtok(bufferLine, ",");
-            //settear e
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
-                                                    bufferId,
-                                                    bufferNombre,
-                                                    bufferHorasTrabajadas,
-                                                    bufferSueldo);
-
-            pEmpleado = employee_newConParametros(  bufferId,
-                                                    bufferNombre,
-                                                    128,
-                                                    bufferHorasTrabajadas,
-                                                    bufferSueldo);
+            token = strtok(bufferLine, delimitador);
+            strncpy(bufferId, token, 1024);
+            token = strtok(NULL, delimitador);
+            strncpy(bufferNombre, token, 1024);
+            token = strtok(NULL, "\n");
+            strncpy(bufferHorasTrabajadas, token, 1024);
+            //calcular sueldo
+            pEmpleado = empleado_newConParametrosSinSueldo( bufferId,
+                                                            bufferNombre,
+                                                            128,
+                                                            bufferHorasTrabajadas);
             if(pEmpleado != NULL)
             {
                 retorno = 0;
-                ll_add(pArrayListEmployee, pEmpleado);
-                lastId = atoi(bufferId);
+                ll_add(listaEmpleados, pEmpleado);
             }
         }
-        for(i=0;i<=lastId;i++)
-        {
-            employee_getNextId();
-        }
     }
+    //empleado_list(listaEmpleados);
     return retorno;
 }
 
