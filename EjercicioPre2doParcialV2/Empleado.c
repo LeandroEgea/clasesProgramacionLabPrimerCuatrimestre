@@ -776,7 +776,8 @@ int empleado_criterioSortSueldo(void* thisA, void* thisB)
     }
     return retorno;
 }
-//me quede aca
+
+
 int em_calcularSueldo(void* pElement)
 {
     int returnAux = -1;
@@ -789,15 +790,20 @@ int em_calcularSueldo(void* pElement)
         if(horas >= 80 && horas <= 240)
         {
             returnAux = 0;
-            if(horas<=120)
+            if(horas >= 80 && horas <= 120)
             {
-                sueldo
+                sueldo = horas * 180;
+            }
+            else if(horas > 120 && horas <= 160)
+            {
+                sueldo = 120 * 180 + (horas-120) * 240;
+            }
+            else if(horas > 160 && horas <= 240)
+            {
+                sueldo = 80 * 180 + 80 * 240 + (horas-160) * 350;
             }
         }
         empleado->sueldo = sueldo;
     }
     return returnAux;
-}    Los valores de horas varian entre 80 y 240.
-    - Las primeras 120 horas la hora vale $180
-    - De 120 a 160 horas, la hora vale $240
-    - De 160 a 240 horas, la hora vale $350
+}

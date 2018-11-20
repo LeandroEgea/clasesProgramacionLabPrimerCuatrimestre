@@ -31,7 +31,6 @@ int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
             strncpy(bufferNombre, token, 1024);
             token = strtok(NULL, "\n");
             strncpy(bufferHorasTrabajadas, token, 1024);
-            //calcular sueldo
             pEmpleado = empleado_newConParametrosSinSueldo( bufferId,
                                                             bufferNombre,
                                                             128,
@@ -43,7 +42,6 @@ int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
             }
         }
     }
-    //empleado_list(listaEmpleados);
     return retorno;
 }
 

@@ -3,6 +3,7 @@
 #include "Empleado.h"
 #include "LinkedList.h"
 #include "Parser.h"
+#include "string.h"
 
 /**
     Realizar un programa que lee de un archivo los datos de empleados y los guarda en un arraylist de entidades
@@ -36,21 +37,47 @@ int main()
         ll_map(listaEmpleados,em_calcularSueldo, 0,ll_len(listaEmpleados));
         empleado_list(listaEmpleados);
 
-        /*if(generarArchivoSueldos("sueldos.csv",listaEmpleados)==1)
+        if(!generarArchivoSueldos("sueldos.csv",listaEmpleados))
         {
             printf("Archivo generado correctamente\n");
         }
         else
-            printf("Error generando archivo\n");*/
+            printf("Error generando archivo\n");
     }
     else
         printf("Error leyendo empleados\n");
 
     return 0;
 }
-
-int generarArchivoSueldos(char* fileName,LinkedList* listaEmpleados)
+int generarArchivoSueldos(char* fileName,LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = -1;
+    Empleado* pEmpleado;
+    int i;
+    int bufferId;
+    char bufferNombre[128];
+    int bufferHorasTrabajadas;
+    int bufferSueldo;
+    FILE* pFile = fopen(fileName,"w");
+    if(pFile != NULL)
+    {
+        retorno = 0;
+        fprintf(pFile,"id,nombre,horasTrabajadas,sueldo");
+        for(i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmpleado = ll_get(pArrayListEmployee,i);
+            empleado_getId(pEmpleado,&bufferId);
+            empleado_getNombre(pEmpleado,bufferNombre);
+            empleado_getHorasTrabajadas(pEmpleado,&bufferHorasTrabajadas);
+            empleado_getSueldo(pEmpleado,&bufferSueldo);
+            if( bufferId >= 0 && strlen(bufferNombre) > 0 &&
+                bufferHorasTrabajadas > 0 && bufferSueldo > 0)
+            {
+                fprintf(pFile,"\n%d,%s,%d,%d",  bufferId,bufferNombre,
+                                                bufferHorasTrabajadas,
+                                                bufferSueldo);
+            }
+        }
+    }
+    return retorno;
 }
-
