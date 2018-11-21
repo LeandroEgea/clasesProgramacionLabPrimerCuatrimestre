@@ -24,8 +24,8 @@ int generarArchivoInforme(char* fileName,LinkedList* listaCompras);
 int main()
 {
     // Definir lista de compras
-    LinkedList* listaCompras;
-    LinkedList* listaFiltrada;
+    LinkedList* listaCompras = ll_newLinkedList();
+    LinkedList* listaFiltrada = ll_newLinkedList();
 
     // Crear lista compras
     //...
@@ -60,3 +60,33 @@ int generarArchivoInforme(char* fileName,LinkedList* listaCompras)
 {
     return 1;
 }
+
+
+/*
+#include "Compra.h"
+
+void com_calcularMonto(void* p)
+{
+
+}
+
+
+
+
+#ifndef COMPRA_H_INCLUDED
+#define COMPRA_H_INCLUDED
+
+struct S_Compra
+{
+  char nombreCliente[128];
+  int idProducto;
+  float precioUnitario;
+  int unidades;
+  float iva;
+  float montoTotal;
+};
+typedef struct S_Compra Compra;
+
+void com_calcularMonto(void* p);
+
+#endif // COMPRA_H_INCLUDED*/
