@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1542908263 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.c
+	"Compra.h"
+	"utn.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"LinkedList.h"
+
+1542908286 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Compra.h
+	"LinkedList.h"
+
+1542904438 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/LinkedList.h
+
+1542897515 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/utn.h
+
+1542904296 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1542907409 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Compra.h"
+	"Parser.h"
+	"utn.h"
+	"Compra.h"
+
+1542645012 /home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.h
+	"LinkedList.h"
+
+1542898479 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1542902897 source:/home/leandroegea/Documents/clasesProgramacionLabPrimerCuatrimestre/EjercicioPre2doParcialV3/EjercicioPre2doParcialV3/Parser.c
+	"LinkedList.h"
+	"Compra.h"
+	"stdio.h"
+	"string.h"
+
